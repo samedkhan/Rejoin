@@ -14,6 +14,6 @@ namespace Rejoin.Data
 
         }
 
-        public DbSet<Person> MyProperty { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
