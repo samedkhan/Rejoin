@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 
 /**
 * jobslist Version:V.1
@@ -19327,15 +19327,7 @@ footer .border-top {
 	.experience{
 		width: 70px !important;
 	}
-	.create-resume-btn:before{
-		content: '';
-		position: absolute;
-		width: 1px;
-		height: 40px;
-		left: 0;
-		background: #e8ebf3;
-		top: 4px;
-	}
+
 }
 @media (min-width:399px) and (max-width:991px){
 	.experience{

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Rejoin.Data;
 
 namespace Rejoin.Migrations
 {
     [DbContext(typeof(RejoinDbContext))]
-    partial class RejoinDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191226112227_AddedPhoneUser")]
+    partial class AddedPhoneUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,10 +76,6 @@ namespace Rejoin.Migrations
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
 
                     b.Property<string>("Pinterest")
                         .HasColumnType("nvarchar(100)")

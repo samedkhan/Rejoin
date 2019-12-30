@@ -10,12 +10,14 @@ using Rejoin.Data;
 
 namespace Rejoin.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly RejoinDbContext _context;
         
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, RejoinDbContext context) : base(context)
         {
+            _context = context;
             _logger = logger;
         }
 
@@ -23,6 +25,7 @@ namespace Rejoin.Controllers
         {
             return View();
         }
+
 
 
 

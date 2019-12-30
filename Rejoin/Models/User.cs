@@ -19,19 +19,15 @@ namespace Rejoin.Models
         public string Username { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        [EmailAddress]
         public string Email { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime CreatedAt { get; set; }
 
-        [Required]
+        
         public bool IsCompany { get; set; }
 
         [MaxLength(50)]
@@ -70,7 +66,9 @@ namespace Rejoin.Models
         [MaxLength(150)]
         public string Image { get; set; }
 
-        [MaxLength(150)]
+        [MaxLength(10)]
+        public string Phone { get; set; }
+
         public string Token { get; set; }
     }
 }

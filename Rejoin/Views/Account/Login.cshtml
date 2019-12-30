@@ -1,0 +1,53 @@
+﻿@model AccountIndexViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+<!--Breadcrumb-->
+<section>
+    <div class="bannerimg cover-image bg-background3" data-image-src="../assets/images/banners/banner2.jpg">
+        <div class="header-text mb-0">
+            <div class="container">
+                <div class="text-center text-white">
+                    <h1 class="">Register</h1>
+                    <ol class="breadcrumb text-center">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                        <li class="breadcrumb-item active text-white" aria-current="page">Login</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/Breadcrumb-->
+<!--Register-section-->
+<section class="sptb">
+    <div class="container customerpage">
+        <div class="row">
+            <div class="single-page">
+                <div class="col-lg-5 col-xl-4 col-md-6 d-block mx-auto">
+                    <div class="wrapper wrapper2">
+
+                        <form class="card-body" asp-controller="Account" asp-action="Login" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input asp-for="Login.Username" />
+                                <span asp-validation-for="Login.Username" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input asp-for="Login.Password" />
+                                <span asp-validation-for="Login.Password" class="text-danger"></span>
+                            </div>
+                            <span>@Html.ValidationMessage("Error", new { @class = "text-danger" })</span>
+                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        </form>
+                        <p class="text-dark mb-0">Don't you have an account?<a asp-controller="Account" asp-action="Register" class="text-primary ml-3">Sign Up</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

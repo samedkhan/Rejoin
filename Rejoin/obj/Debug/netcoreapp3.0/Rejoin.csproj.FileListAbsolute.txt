@@ -66,6 +66,10 @@ C:\Users\SAMED\source\repos\Rejoin\Rejoin\bin\Debug\netcoreapp3.0\System.Compone
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\bin\Debug\netcoreapp3.0\System.Diagnostics.DiagnosticSource.dll
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\bin\Debug\netcoreapp3.0\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Rejoin.csprojAssemblyReference.cache
+C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Razor\Views\Account\Register.cshtml.g.cs
+C:\Users\SAMED\source\repos\Rejoin\Rejoin\bin\Debug\netcoreapp3.0\CryptoHelper.dll
+C:\Users\SAMED\source\repos\Rejoin\Rejoin\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Logging.Debug.dll
+C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Rejoin.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.dll
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\bin\Debug\netcoreapp3.0\Microsoft.CodeAnalysis.CSharp.dll
@@ -139,6 +143,5 @@ C:\Users\SAMED\source\repos\Rejoin\Rejoin\bin\Debug\netcoreapp3.0\ru\Microsoft.C
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Razor\Views\Account\Register.cshtml.g.cs
-C:\Users\SAMED\source\repos\Rejoin\Rejoin\bin\Debug\netcoreapp3.0\CryptoHelper.dll
-C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Rejoin.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Razor\Views\Account\Login.cshtml.g.cs
+C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Razor\Views\Account\Profile.cshtml.g.cs

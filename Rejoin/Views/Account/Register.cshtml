@@ -28,65 +28,36 @@
             <div class="single-page">
                 <div class="col-lg-5 col-xl-4 col-md-6 d-block mx-auto">
                     <div class="wrapper wrapper2">
-                        @*<div class="p-4 mb-5">
-                            <h4 class="text-left font-weight-semibold fs-16">Register With</h4>
-                            <div class="btn-list d-sm-flex">
-                                <a href="https://www.google.com/gmail/" class="btn btn-primary mb-sm-0"><i class="fa fa-google fa-1x mr-2"></i> Google</a>
-                                <a href="https://twitter.com/" class="btn btn-secondary mb-sm-0"><i class="fa fa-twitter fa-1x mr-2"></i> Twitter</a>
-                                <a href="https://www.facebook.com/" class="btn btn-info mb-0"><i class="fa fa-facebook fa-1x mr-2"></i> Facebook</a>
-                            </div>
-                        </div>
-                        <hr class="divider">*@
-                        <form class="card-body" asp-controller="account" asp-action="register" method="post" enctype="multipart/form-data">
-                            <div>
+                      
+                        <form class="card-body" asp-controller="Account" asp-action="Register" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
                                 <label>Username</label>
-                                <input asp-for="register.Username" />
-                                <span asp-validation-for="register.Username"></span>
+                                <input asp-for="Register.Username" />
+                                <span asp-validation-for="Register.Username"  class="text-danger"></span>
                             </div>
-                            <div>
+                            <div class="form-group">
                                 <label>E-mail</label>
-                                <input asp-for="register.Email" />
-                                <span asp-validation-for="register.Email"></span>
+                                <input asp-for="Register.Email" />
+                                <span asp-validation-for="Register.Email" class="text-danger"></span>
+                                @Html.ValidationMessage("Email", new { @class="text-danger"})
                             </div>
-                            <div>
+                            <div class="form-group">
                                 <label>Password</label>
-                                <input asp-for="register.Password" />
-                                <span asp-validation-for="register.Password"></span>
+                                <input asp-for="Register.Password" />
+                                <span asp-validation-for="Register.Password"  class="text-danger"></span>
                             </div>
-                            
+                            <div class="form-group d-flex align-items-center justify-content-start">
+                                <input type="radio" asp-for="Register.IsCompany" value="false" style="height:25px;width:10%" checked/><span class="text-primary mr-5">User</span>
+                                <input type="radio" asp-for="Register.IsCompany" value="true" style="height:25px;width:10%"/><span class="text-primary">Company</span>
+
+                                <span asp-validation-for="Register.IsCompany" class="text-danger"></span>
+                            </div>
                             <button type="submit" class="btn btn-primary btn-block">Register</button>
-                            
-                            <p class="text-dark mb-0">Already have an account?<a asp-controller="Account" asp-action="Login" class="text-primary ml-3">Sign In</a></p>
                         </form>
-                       
+                        <p class="text-dark mb-0">Already have an account?<a asp-controller="Account" asp-action="Login" class="text-primary ml-3">Sign In</a></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!--Register-section-->
-<!--Onlinesletter-->
-@*<section class="sptb bg-white border-top">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-7 col-xl-6 col-md-12">
-                <div class="sub-newsletter">
-                    <h3 class="mb-2"><i class="fa fa-paper-plane-o mr-2"></i> Subscribe To Our Onlinesletter</h3>
-                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                </div>
-            </div>
-            <div class="col-lg-5 col-xl-6 col-md-12">
-                <div class="input-group sub-input mt-1">
-                    <input type="text" class="form-control input-lg " placeholder="Enter your Email">
-                    <div class="input-group-append ">
-                        <button type="button" class="btn btn-primary btn-lg br-tr-3  br-br-3">
-                            Subscribe
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>*@
-<!--/Onlinesletter-->
