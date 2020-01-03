@@ -33,6 +33,11 @@ namespace Rejoin.Controllers
                 ViewBag.City = usr.City;
                 ViewBag.Zip = usr.ZipCode;
                 ViewBag.Country = usr.Country;
+                ViewBag.Image = usr.Image;
+                ViewBag.About = usr.AboutMe;
+                ViewBag.HasResume = usr.HasResume;
+                ViewBag.Facebook = usr.Facebook;
+                ViewBag.Google = usr.Google;
             }
 
             base.OnActionExecuting(context);

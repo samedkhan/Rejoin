@@ -1,0 +1,223 @@
+﻿@model JobIndexViewModel
+@{
+    ViewData["Title"] = "Myjob";
+}
+<!--Breadcrumb-->
+<section>
+    <div class="bannerimg cover-image bg-background3" data-image-src="~/images/banners/banner2.jpg">
+        <div class="header-text mb-0">
+            <div class="text-center text-white">
+                <h1 class="">My Jobs</h1>
+                <ol class="breadcrumb text-center">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">My Dashboard </a></li>
+                    <li class="breadcrumb-item active text-white" aria-current="page">My Jobs</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/Breadcrumb-->
+<!--User Dashboard-->
+<section class="sptb">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3 col-lg-12 col-md-12">
+                <!--Setting Partial-->
+                <partial name="_Setting" />
+                <!--/Setting Partial-->
+            </div>
+            <div class="col-xl-9 col-lg-12 col-md-12">
+                <div class="card mb-0">
+                    <div class="card-header">
+                        <h3 class="card-title">My Ads</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="ads-tabs">
+                            <div class="tabs-menus">
+                                <!-- Tabs -->
+                                <ul class="nav panel-tabs">
+                                    <li class=""><a href="#tab1" class="active" data-toggle="tab">All (@ViewBag.AllJobs.Count)</a></li>
+                                    <li><a href="#tab2" data-toggle="tab">Active (@ViewBag.ActiveJobs)</a></li>
+                                    <li><a href="#tab3" data-toggle="tab">Deactive (@ViewBag.DeactiveJobs)</a></li>
+                                    @*<li><a href="#tab4" data-toggle="tab">Sold (03)</a></li>
+                                        <li><a href="#tab5" data-toggle="tab">Active (03)</a></li>
+                                        <li><a href="#tab6" data-toggle="tab">Expired (01)</a></li>*@
+                                </ul>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane active table-responsive border-top userprof-tab" id="tab1">
+                                    <table class="table table-bordered table-hover mb-0 text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th class="w-100">Latest Jobs</th>
+                                                <th>Location</th>
+                                                <th>Salary</th>
+                                                <th>Ad Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (Job item in ViewBag.AllJobs)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <label class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" name="checkbox" value="checkbox">
+                                                            <span class="custom-control-label"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <div class="media mt-0 mb-0">
+                                                            <div class="media-body">
+                                                                <div class="card-item-desc p-0">
+                                                                    <a href="#" class="text-dark"><h4 class="font-weight-semibold">@item.Title</h4></a>
+                                                                    <a href="#"><i class="fa fa-clock-o w-4"></i>  @item.CreatedAt.ToString("dd.MM.yyyy")</a><br>
+                                                                    <a href="#"><i class="fa fa-tag w-4"></i> @item.Jobtype </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td><i class="fa fa-map-marker mr-1 text-muted"></i>@item.Location</td>
+                                                    <td class="font-weight-semibold fs-16">@item.Salary.ToString("0") $</td>
+                                                    <td>
+                                                        @if (item.IsActive == true)
+                                                        {
+                                                            <a href="#" class="badge badge-success">Active</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a href="#" class="badge badge-danger">Deactive</a>
+                                                        }
+                                                    </td>
+                                                    <td>
+
+                                                        @if (item.IsActive == true)
+                                                        {
+                                                            <a asp-action="edit" asp-controller="job" asp-route-id="@item.JobId" class="btn btn-success btn-sm text-white" data-toggle="tooltip" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                            <a asp-action="deactivate" asp-controller="job" asp-route-id="@item.JobId" class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-original-title="Deactive it"><i class="fas fa-times"></i></a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a asp-action="activate" asp-controller="job" asp-route-id="@item.JobId" class="btn btn-success btn-sm text-white" data-toggle="tooltip" data-original-title="Active it"><i class="fas fa-check"></i></a>
+                                                        }
+                                                        <a class="btn btn-primary btn-sm text-white" data-toggle="tooltip" data-original-title="View Appliers"><i class="fas fa-eye"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                    <ul class="mb-0 pr-2">
+                                        <li class="d-none d-lg-flex">
+                                            <span class="ml-auto"><a class="btn btn-secondary ad-post mt-1" asp-action="create" asp-controller="job"><i class="fa fa-briefcase"></i> Submit a Job</a></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane  table-responsive border-top userprof-tab" id="tab2">
+                                    <table class="table table-bordered table-hover mb-0 text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th class="w-100">Latest Jobs</th>
+                                                <th>Location</th>
+                                                <th>Salary</th>
+                                                <th>Ad Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" name="checkbox" value="checkbox">
+                                                        <span class="custom-control-label"></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <div class="media mt-0 mb-0">
+                                                        <div class="media-body">
+                                                            <div class="card-item-desc p-0">
+                                                                <a href="#" class="text-dark"><h4 class="font-weight-semibold">BPO Jobs</h4></a>
+                                                                <a href="#"><i class="fa fa-clock-o w-4"></i>  Feb-21-2018 , 16:54</a><br>
+                                                                <a href="#"><i class="fa fa-tag w-4"></i> Part Time</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td><i class="fa fa-map-marker mr-1 text-muted"></i>Ambrosia</td>
+                                                <td class="font-weight-semibold fs-16">$54 - $60</td>
+                                                <td>
+                                                    <a href="#" class="badge badge-warning">Published</a>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-success btn-sm text-white" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+                                                    <a class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
+                                                    <a class="btn btn-info btn-sm text-white" data-toggle="tooltip" data-original-title="Save to Wishlist"><i class="fa fa-heart-o"></i></a>
+                                                    <a class="btn btn-primary btn-sm text-white" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
+                                                </td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane  table-responsive border-top userprof-tab" id="tab3">
+                                    <table class="table table-bordered table-hover  text-nowrap mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th class="w-100">Latest Jobs</th>
+                                                <th>Location</th>
+                                                <th>Salary</th>
+                                                <th>Ad Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" name="checkbox" value="checkbox">
+                                                        <span class="custom-control-label"></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <div class="media mt-0 mb-0">
+                                                        <div class="media-body">
+                                                            <div class="card-item-desc p-0">
+                                                                <a href="#" class="text-dark"><h4 class="font-weight-semibold">Admin</h4></a>
+                                                                <a href="#"><i class="fa fa-clock-o w-4"></i>  Nov-15-2019 , 12:45</a><br>
+                                                                <a href="#"><i class="fa fa-tag w-4"></i> Full Time</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td><i class="fa fa-map-marker mr-1 text-muted"></i> Gondal</td>
+                                                <td class="font-weight-semibold fs-16">$22 - $34</td>
+                                                <td>
+                                                    <a href="#" class="badge badge-primary">featured</a>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-success btn-sm text-white" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+                                                    <a class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
+                                                    <a class="btn btn-info btn-sm text-white" data-toggle="tooltip" data-original-title="Save to Wishlist"><i class="fa fa-heart-o"></i></a>
+                                                    <a class="btn btn-primary btn-sm text-white" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script src="~/js/JavaScript.js"></script>
+}
+<!--User Dashboard-->

@@ -54,11 +54,6 @@ namespace Rejoin.Models
         [MaxLength(100)]
         public string Google { get; set; }
 
-        [MaxLength(100)]
-        public string Twitter { get; set; }
-
-        [MaxLength(100)]
-        public string Pinterest { get; set; }
 
         [Column(TypeName = "ntext")]
         public string AboutMe { get; set; }
@@ -70,5 +65,22 @@ namespace Rejoin.Models
         public string Phone { get; set; }
 
         public string Token { get; set; }
+
+        public bool HasResume { get; set; }
+
+        public bool HasJobSubmit { get; set; }
+
+        [MaxLength(100)]
+        public string JobProfession { get; set; }
+
+        public int ExperienceYear { get; set; }
+
+        public int ExperienceMonth { get; set; }
+
+        [Column(TypeName = "ntext")]
+        [MaxLength(500)]
+        public string PersonalSkills { get; set; }
+
+        public UserResume Resume { get; set; }
     }
 }

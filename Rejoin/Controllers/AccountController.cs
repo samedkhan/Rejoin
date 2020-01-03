@@ -9,18 +9,21 @@ using Rejoin.Models;
 using CryptoHelper;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using Rejoin.Injections;
 
 namespace Rejoin.Controllers
 {
     public class AccountController : BaseController
     {
+        private readonly IAuth _auth;
         private readonly RejoinDbContext _context;
-        //private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hosting;
+        private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hosting;
 
-        public AccountController(RejoinDbContext context /*Microsoft.AspNetCore.Hosting.IWebHostEnvironment hosting*/):base(context)
+        public AccountController(RejoinDbContext context, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hosting, IAuth auth) :base(context)
         {
+            _auth = auth;
             _context = context;
-            //_hosting = hosting;
+            _hosting = hosting;
         }
 
         public IActionResult Register()
@@ -106,7 +109,7 @@ namespace Rejoin.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("Error", "Username or Password is not correct");
+                    ModelState.AddModelError("", "Username or Password is not correct");
                 }
             }
 
@@ -115,13 +118,13 @@ namespace Rejoin.Controllers
                 Login = login
             };
 
-            return View("~/Views/Account/Login.cshtml", data);
+            return View("~/Views/Account/Login.cshtml");
         }
 
         public IActionResult Logout()
         {
             var token = Request.Cookies["token"];
-            User LoggedUser = _context.Users.FirstOrDefault(u => u.Token == token);
+            User LoggedUser = _context.Users.Find(_auth.User.UserId);
             LoggedUser.Token = null;
             _context.SaveChanges();
             Response.Cookies.Append("token", token, new Microsoft.AspNetCore.Http.CookieOptions
@@ -136,11 +139,10 @@ namespace Rejoin.Controllers
         {
             if (Request.Cookies["token"] == null)
             {
-                return RedirectToAction("index", "home");
+                return RedirectToAction("login", "account");
             }
             else
             {
-             
                 return View();
             }
             
@@ -149,38 +151,58 @@ namespace Rejoin.Controllers
         [HttpPost]
         public IActionResult Profile(AccountProfileModel profile)
         {
-
             if (ModelState.IsValid)
             {
-                //string FileName = null;
-                var token = Request.Cookies["token"];
-                User LoggedUser = _context.Users.FirstOrDefault(u => u.Token == token);
+                string FileName = null;
+                User LoggedUser = _context.Users.Find(_auth.User.UserId);
+
+                if (profile.Photo != null)
+                {
+                    if (profile.Photo.Length > 100000)
+                    {
+                        ModelState.AddModelError("", "Volume must be low than 1 mb");
+                        ViewBag.PhotoName = profile.Photo.FileName;
+                        return View();
+                    }
+                    string UploadsFolder = Path.Combine(_hosting.WebRootPath, "images", "users");
+                    FileName = Guid.NewGuid() + "_" + profile.Photo.FileName;
+                    string FilePath = Path.Combine(UploadsFolder, FileName);
+                    profile.Photo.CopyTo(new FileStream(FilePath, FileMode.Create));
+                    LoggedUser.Image = FileName;
+                }
 
                 LoggedUser.FirstName = profile.FirstName;
-                LoggedUser.LastName = profile.LastName;
+                if (LoggedUser.IsCompany != true)
+                {
+                    LoggedUser.LastName = profile.LastName;
+                }
                 LoggedUser.Country = profile.Country;
                 LoggedUser.City = profile.City;
                 LoggedUser.Adress = profile.Adress;
                 LoggedUser.ZipCode = profile.ZipCode;
                 LoggedUser.Phone = profile.Phone;
                 LoggedUser.Facebook = profile.Facebook;
-                LoggedUser.Twitter = profile.Twitter;
-                LoggedUser.Pinterest = profile.Pinterest;
                 LoggedUser.Google = profile.Google;
                 LoggedUser.AboutMe = profile.AboutMe;
 
-                //if(profile.Photo != null)
-                //{
-                //    string UploadsFolder = Path.Combine(/*_hosting.WebRootPath, */"Uploads", "users");
-                //    FileName = Guid.NewGuid() + "_" + profile.Photo.FileName;
-                //    string FilePath = Path.Combine(UploadsFolder, FileName);
-                //    profile.Photo.CopyTo(new FileStream(FilePath, FileMode.Create));
-                //}
-
-                //LoggedUser.Image = FileName;
-
                 _context.Entry(LoggedUser).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 _context.SaveChanges();
+
+                if (LoggedUser.IsCompany == true)
+                {
+                    if (LoggedUser.HasJobSubmit != true)
+                    {
+                        return RedirectToAction("index", "job", new { id = LoggedUser.UserId });
+                    }
+                }
+                else 
+                {
+                    if(LoggedUser.HasResume != true)
+                    {
+                        return RedirectToAction("index", "resume", new { id = LoggedUser.UserId });
+                    }
+                    
+                }
 
                 return RedirectToAction("index", "home");
 
@@ -191,8 +213,8 @@ namespace Rejoin.Controllers
                 {
                     Profile = profile
                 };
-
-                return View("~/Views/Account/Profile.cshtml", data);
+               
+                return View("~/Views/Account/Profile.cshtml");
 
             }
 

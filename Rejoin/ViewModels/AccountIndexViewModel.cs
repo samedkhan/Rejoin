@@ -11,9 +11,10 @@ namespace Rejoin.ViewModels
 {
     public class AccountIndexViewModel
     {
-       public AccountLoginModel Login { get; set; }
-       public AccountRegisterModel Register { get; set; }
-       public AccountProfileModel Profile { get; set; }
+        public AccountLoginModel Login { get; set; }
+        public AccountRegisterModel Register { get; set; }
+        public AccountProfileModel Profile { get; set; }
+       
     }
 
     public class AccountRegisterModel
@@ -51,11 +52,15 @@ namespace Rejoin.ViewModels
 
     public class AccountProfileModel
     {
+        public IFormFile Photo { get; set; }
+
+        public bool HasResume { get; set; }
+
         [Required(ErrorMessage = "Required")]
         [MaxLength(50)]
         public string FirstName { get; set; }
 
-        [Required(ErrorMessage = "Required")]
+
         [MaxLength(50)]
         public string LastName { get; set; }
 
@@ -81,16 +86,9 @@ namespace Rejoin.ViewModels
         [MaxLength(100)]
         public string Google { get; set; }
 
-        [MaxLength(100)]
-        public string Twitter { get; set; }
-
-        [MaxLength(100)]
-        public string Pinterest { get; set; }
-
-        [MinLength(100,ErrorMessage = "Write about yourself minimum 100 character")]
+        [MinLength(50, ErrorMessage = "Write about yourself minimum 50 character")]
         [Column(TypeName = "ntext")]
         public string AboutMe { get; set; }
-
 
         [MaxLength(150)]
         public string Image { get; set; }
@@ -98,8 +96,8 @@ namespace Rejoin.ViewModels
         [MaxLength(10, ErrorMessage = "Phone must be 10 character")]
         [MinLength(10, ErrorMessage = "Phone must be 10 character")]
         public string Phone { get; set; }
-
-        [Required]
-        public IFormFile Photo { get; set; }
     }
+
+    
 }
+

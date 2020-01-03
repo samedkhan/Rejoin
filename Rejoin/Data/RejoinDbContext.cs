@@ -15,5 +15,13 @@ namespace Rejoin.Data
         }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Work> Works { get; set; }
+
+        public DbSet<Education> Educations { get; set; }
+
+        public DbSet<UserResume> UserResumes { get; set; }
+
+        public DbSet<Job> Jobs { get; set; }
     }
 }

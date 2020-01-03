@@ -1,0 +1,286 @@
+﻿@model JobIndexViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!--Sliders Section-->
+<section>
+    <div class="bannerimg cover-image bg-background3" data-image-src="~/images/banners/banner2.jpg">
+        <div class="header-text mb-0">
+            <div class="container">
+                <div class="text-center text-white">
+                    <h1>Add Job</h1>
+                    <ol class="breadcrumb text-center">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                        <li class="breadcrumb-item active text-white" aria-current="page">Submit Job</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/Sliders Section-->
+<!--Job posts-section-->
+<section class="sptb">
+    <div class="container">
+        <div class="row ">
+            <div class="col-lg-8 col-md-12 col-md-12">
+                <div class="card">
+                    <div class="card-header ">
+                        <h3 class="card-title">Submit a job</h3>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title mb-3">Job details </h3>
+                        <form asp-action="create" asp-controller="job" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label class="form-label text-dark">Job Title</label>
+                                <input asp-for="JobCreate.Title" type="text" class="form-control" placeholder="" required>
+                                <span asp-validation-for="JobCreate.Title" class="text-danger"></span>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group text-dark">
+                                        <label class="form-label"> Job Type</label>
+                                        <select asp-for="JobCreate.Jobtype" class="form-control select2-show-search" data-placeholder="Choose one (with searchbox)">
+                                            <optgroup>
+                                                <option>Select Option</option>
+                                                <option value="0">Full Time Jobs</option>
+                                                <option value="1">Part Time Jobs</option>
+                                                <option value="2">Work From Home</option>
+                                                <option value="3">Internships</option>
+                                            </optgroup>
+                                        </select>
+                                        <span asp-validation-for="JobCreate.Jobtype" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group text-dark">
+                                        <label class="form-label"> Role</label>
+                                        <select asp-for="JobCreate.Role" class="form-control select2-show-search" data-placeholder="Choose one (with searchbox)">
+                                            <optgroup>
+                                                <option>Select Option</option>
+                                                <option value="IT Software">IT Software</option>
+                                                <option value="Banking">Banking</option>
+                                                <option value="Finaces">Finaces</option>
+                                                <option value="Cook/Chef">Cook/Chef</option>
+                                                <option value="Driveing">Driveing</option>
+                                                <option value="HR Recruiter">HR Recruiter</option>
+                                                <option value="IT Hardware">IT Hardware</option>
+                                                <option value="Sales">Sales</option>
+                                                <option value="Accountant">Accountant</option>
+                                            </optgroup>
+                                        </select>.
+                                        <span asp-validation-for="JobCreate.Role" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group m-0">
+                                        <label class="form-label text-dark">Monthly Salary ($)</label>
+                                        <div class="row gutters-xs">
+                                            <div class="col-12">
+                                                <input asp-for="JobCreate.Salary" type="number" class="form-control" placeholder="Salary">
+                                                <span asp-validation-for="JobCreate.Salary" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label text-dark">Experience (year)</label>
+                                        <div class="row gutters-xs">
+                                            <div class="col-12">
+                                                <select asp-for="JobCreate.ExpierenceYear" class="form-control select2-no-search custom-select">
+                                                    <option value="">Year</option>
+                                                    <option value="0">0</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                </select>
+                                                <span asp-validation-for="JobCreate.ExpierenceYear" class="text-danger"></span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group text-dark">
+                                        <label class="form-label"> City</label>
+                                        <select asp-for="JobCreate.City" class="form-control select2-show-search" data-placeholder="Choose one (with searchbox)">
+                                            <optgroup>
+                                                <option >--Select--</option>
+                                                <option value="Ahmedabad"> Ahmedabad</option>
+                                                <option value="Bangalore"> Bangalore</option>
+                                                <option value="Chandigarh"> Chandigarh</option>
+                                                <option value="Kolkata"> Kolkata</option>
+                                                <option value="Mumbai"> Mumbai</option>
+                                                <option value="Jaipur"> Jaipur</option>
+                                                <option value="Chennai"> Chennai</option>
+                                                <option value="Pune"> Pune</option>
+                                                <option value="Medak"> Medak</option>
+                                                <option value="Sivaganga"> Sivaganga</option>
+                                                <option value="North Tripurae"> North Tripurae</option>
+                                                <option value="West Tripura"> West Tripura</option>
+                                                <option value="Coimbatore">  Coimbatore</option>
+                                            </optgroup>
+                                        </select>
+                                        <span asp-validation-for="JobCreate.City" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group text-dark">
+                                        <label class="form-label"> Localities</label>
+                                        <select asp-for="JobCreate.Location" class="form-control select2-show-search" data-placeholder="Choose one (with searchbox)">
+                                            <optgroup>
+                                                <option> --Select--</option>
+                                                <option value="Aakaru Cher Road"> Aakaru Cher Road</option>
+                                                <option value="Ahmedabad - Rajkot Highway"> Ahmedabad - Rajkot Highway</option>
+                                                <option value="Airport"> Airport</option>
+                                                <option value="Ambawadi"> Ambawadi</option>
+                                                <option value="New Mexico"> New Mexico</option>
+                                                <option value="Asarwa"> Asarwa</option>
+                                                <option value="Bapunagar"> Bapunagar</option>
+                                                <option value="C G Road"> C G Road</option>
+                                                <option value="Chandkheda"> Chandkheda</option>
+                                                <option value="Chharodi"> Chharodi</option>
+                                                <option value="Godhavi"> Godhavi</option>
+                                                <option value="Gokuldham"> Gokuldham</option>
+                                                <option value="Hathijan"> Hathijan</option>
+                                            </optgroup>
+                                        </select>
+                                        <span asp-validation-for="JobCreate.Location" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group text-dark">
+                                <label class="form-label text-dark">Job Description</label>
+                                <textarea asp-for="JobCreate.JobDescription" class="form-control" rows="5" placeholder="text here.." required></textarea>
+                                <span asp-validation-for="JobCreate.JobDescription" class="text-danger"></span>
+                            </div>
+                            <h3 class="card-title mt-6 mb-3">Recruiter details </h3>
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Hiring for (Company name)</label>
+                                        <input type="text" class="form-control" value="@ViewBag.Username">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-control" placeholder="Email Address" value="@ViewBag.Email" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group mb-0">
+                                        <label class="form-label">Phone Number</label>
+                                        <input type="text" class="form-control" placeholder="Number" value="@ViewBag.Phone" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group mb-0">
+                                        <label class="form-label">Address</label>
+                                        <input type="text" class="form-control" placeholder="Address" value="@ViewBag.Address" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-light-50">
+                                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Terms And Conditions</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled widget-spec  mb-0">
+                            <li>
+                                <i class="fa fa-check text-success" aria-hidden="true"></i>Money Not Refundable
+                            </li>
+                            <li>
+                                <i class="fa fa-check text-success" aria-hidden="true"></i>You can renew your Premium ad after experted.
+                            </li>
+                            <li>
+                                <i class="fa fa-check text-success" aria-hidden="true"></i>Premium ads are active for depend on package.
+                            </li>
+                            <li class="ml-5 mb-0">
+                                <a href="tips.html"> View more..</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Benefits Of Premium Ad</h3>
+                    </div>
+                    <div class="card-body pb-2">
+                        <ul class="list-unstyled widget-spec vertical-scroll mb-0">
+                            <li>
+                                <i class="fa fa-check text-success" aria-hidden="true"></i>Premium Ads Active
+                            </li>
+                            <li>
+                                <i class="fa fa-check text-success" aria-hidden="true"></i>Premium ads are displayed on top
+                            </li>
+                            <li>
+                                <i class="fa fa-check text-success" aria-hidden="true"></i>Premium ads will be Show in Google results
+                            </li>
+                            <li>
+                                <i class="fa fa-check text-success" aria-hidden="true"></i>Premium Ads Active
+                            </li>
+                            <li>
+                                <i class="fa fa-check text-success" aria-hidden="true"></i>Premium ads are displayed on top
+                            </li>
+                            <li>
+                                <i class="fa fa-check text-success" aria-hidden="true"></i>Premium ads will be Show in Google results
+                            </li>
+                            <li>
+                                <i class="fa fa-check text-success" aria-hidden="true"></i>Premium Ads Active
+                            </li>
+                            <li>
+                                <i class="fa fa-check text-success" aria-hidden="true"></i>Premium ads are displayed on top
+                            </li>
+                            <li>
+                                <i class="fa fa-check text-success" aria-hidden="true"></i>Premium ads will be Show in Google results
+                            </li>
+                            <li>
+                                <i class="fa fa-check text-success" aria-hidden="true"></i>Premium Ads Active
+                            </li>
+                            <li>
+                                <i class="fa fa-check text-success" aria-hidden="true"></i>Premium ads are displayed on top
+                            </li>
+                            <li>
+                                <i class="fa fa-check text-success" aria-hidden="true"></i>Premium ads will be Show in Google results
+                            </li>
+                            <li>
+                                <i class="fa fa-check text-success" aria-hidden="true"></i>Premium Ads Active
+                            </li>
+                            <li>
+                                <i class="fa fa-check text-success" aria-hidden="true"></i>Premium ads are displayed on top
+                            </li>
+                            <li>
+                                <i class="fa fa-check text-success" aria-hidden="true"></i>Premium ads will be Show in Google results
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/Job posts-section-->
