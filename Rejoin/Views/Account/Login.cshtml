@@ -39,7 +39,7 @@
                                 <input asp-for="Login.Password" />
                                 <span asp-validation-for="Login.Password" class="text-danger"></span>
                             </div>
-                            <span>@Html.ValidationMessage("Error", new { @class = "text-danger" })</span>
+                            <span>@Html.ValidationSummary("", new { @class = "text-danger" })</span>
                             <button type="submit" class="btn btn-primary btn-block">Login</button>
                         </form>
                         <p class="text-dark mb-0">Don't you have an account?<a asp-controller="Account" asp-action="Register" class="text-primary ml-3">Sign Up</a></p>
