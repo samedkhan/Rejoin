@@ -38,6 +38,8 @@ namespace Rejoin
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddTransient<IAuth, Auth>();
+
+            services.AddTransient<IRelativeTime, RelativeTime>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,6 +67,8 @@ namespace Rejoin
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+               
             });
         }
     }

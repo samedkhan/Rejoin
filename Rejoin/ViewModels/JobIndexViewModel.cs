@@ -11,6 +11,8 @@ namespace Rejoin.ViewModels
     public class JobIndexViewModel
     {
         public JobCreateIndexViewModel JobCreate { get; set; }
+
+
     }
 
     public class JobCreateIndexViewModel
@@ -20,7 +22,6 @@ namespace Rejoin.ViewModels
 
         public bool IsActive { get; set; }
 
-        [Column(TypeName = "date")]
         public DateTime CreatedAt { get; set; }
 
         [Required(ErrorMessage = "Required")]
@@ -50,4 +51,7 @@ namespace Rejoin.ViewModels
         [MaxLength(500)]
         public string JobDescription { get; set; }
     }
+
+    
+  
 }

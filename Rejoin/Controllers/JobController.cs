@@ -7,17 +7,20 @@ using Rejoin.Data;
 using Rejoin.Injections;
 using Rejoin.Models;
 using Rejoin.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace Rejoin.Controllers
 {
     public class JobController : BaseController
     {
+        private readonly IRelativeTime _relativetime;
         private readonly IAuth _auth;
         private readonly RejoinDbContext _context;
         private readonly Microsoft.AspNetCore.Hosting.IWebHostEnvironment _hosting;
 
-        public JobController(RejoinDbContext context, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hosting, IAuth auth) : base(context)
+        public JobController(RejoinDbContext context, Microsoft.AspNetCore.Hosting.IWebHostEnvironment hosting, IAuth auth, IRelativeTime relativetime) : base(context)
         {
+            _relativetime = relativetime;
             _auth = auth;
             _context = context;
             _hosting = hosting;
@@ -88,9 +91,9 @@ namespace Rejoin.Controllers
             }
             else
             {
-                ViewBag.AllJobs = _context.Jobs.Where(j => j.UserId == _auth.User.UserId).ToList();
-                ViewBag.ActiveJobs = _context.Jobs.Where(j => j.UserId == _auth.User.UserId && j.IsActive == true).Count();
-                ViewBag.DeactiveJobs = _context.Jobs.Where(j => j.UserId == _auth.User.UserId && j.IsActive != true).Count();
+                ViewBag.AllJobs = _context.Jobs.Where(j => j.UserId == _auth.User.UserId).OrderByDescending(j => j.CreatedAt).ToList();
+                ViewBag.ActiveJobs = _context.Jobs.Where(j => j.UserId == _auth.User.UserId && j.IsActive == true).OrderByDescending(j => j.CreatedAt).ToList();
+                ViewBag.DeactiveJobs = _context.Jobs.Where(j => j.UserId == _auth.User.UserId && j.IsActive != true).OrderByDescending(j => j.CreatedAt).ToList();
 
                 return View();
             }
@@ -98,16 +101,24 @@ namespace Rejoin.Controllers
 
         public IActionResult Edit(int Id)
         {
-            Job job = _context.Jobs.Find(Id);
-            if (job == null)
+            if (Request.Cookies["token"] == null)
             {
-                return NotFound();
+                return RedirectToAction("login", "account");
             }
             else
             {
-                ViewBag.Job = job;
-                return View();
+                Job job = _context.Jobs.Where(j => j.JobId == Id && j.UserId == _auth.User.UserId).FirstOrDefault();
+                if (job == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    ViewBag.Job = job;
+                    return View();
+                }
             }
+               
 
         }
 
@@ -146,40 +157,78 @@ namespace Rejoin.Controllers
 
         }
 
-        public IActionResult Deactivate(int id)
+        public IActionResult Deactivate(int Id)
         {
-            Job DeactiveJob = _context.Jobs.Find(id);
+            if (Request.Cookies["token"] == null)
+            {
+                return RedirectToAction("login", "account");
+            }
+            else
+            {
+                Job DeactiveJob = _context.Jobs.Where(j => j.JobId == Id && j.UserId == _auth.User.UserId).FirstOrDefault();
 
-            if(DeactiveJob == null)
+                if (DeactiveJob == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    DeactiveJob.IsActive = false;
+                    _context.Entry(DeactiveJob).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    _context.SaveChanges();
+                    return RedirectToAction("myjob", "job");
+                }
+            }
+            
+        }
+
+        public IActionResult Activate(int Id)
+        {
+            if (Request.Cookies["token"] == null)
+            {
+                return RedirectToAction("login", "account");
+            }
+            else
+            {
+                Job ActivateJob = _context.Jobs.Where(j => j.JobId == Id && j.UserId == _auth.User.UserId).FirstOrDefault();
+
+                if (ActivateJob == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    ActivateJob.IsActive = true;
+                    _context.Entry(ActivateJob).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    _context.SaveChanges();
+                    return RedirectToAction("myjob", "job");
+                }
+            }
+           
+        }
+        
+        public IActionResult Details(string Title, int id)
+        {
+            Job JobDetail = _context.Jobs.Include(j => j.user).Where(j => j.JobId == id).FirstOrDefault();
+
+            if (JobDetail == null)
             {
                 return NotFound();
             }
             else
             {
-                DeactiveJob.IsActive = false;
-                _context.Entry(DeactiveJob).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                _context.SaveChanges();
-                return RedirectToAction("myjob", "job");
+                ViewBag.JobDetail = JobDetail;
+                ViewBag.User = JobDetail.user;
+                return View();
             }
         }
 
-        public IActionResult Activate(int id)
+        public IActionResult Alljobscompany(int id)
         {
-            Job ActivateJob = _context.Jobs.Find(id);
-
-            if (ActivateJob == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                ActivateJob.IsActive = true;
-                _context.Entry(ActivateJob).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                _context.SaveChanges();
-                return RedirectToAction("myjob", "job");
-            }
+            List<Job> AllJobs = _context.Jobs.Include(j => j.user).Where(j => j.user.UserId == id && j.IsActive == true).ToList();
+            ViewBag.Jobs = AllJobs;
+            ViewBag.User = AllJobs[0].user;
+            return View();
         }
-
-
     }
 }

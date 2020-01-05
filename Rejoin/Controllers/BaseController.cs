@@ -38,6 +38,9 @@ namespace Rejoin.Controllers
                 ViewBag.HasResume = usr.HasResume;
                 ViewBag.Facebook = usr.Facebook;
                 ViewBag.Google = usr.Google;
+                ViewBag.Since = usr.CreatedAt.ToString("MMMM yyyy");
+                ViewBag.UserId = usr.UserId;
+                
             }
 
             base.OnActionExecuting(context);

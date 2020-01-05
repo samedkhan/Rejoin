@@ -403,11 +403,13 @@
                 </li>
             </ul>
         </li>*@
-                        <li>
-                            <a href="#">My Dashboard <span class="fa fa-caret-down m-0"></span></a>
-                            @if (Context.Request.Cookies["token"] != null)
-                            {
+                        
 
+                        @if (Context.Request.Cookies["token"] != null)
+                        {
+
+                            <li>
+                                <a href="#">My Dashboard <span class="fa fa-caret-down m-0"></span></a>
                                 <ul class="sub-menu">
                                     @if (ViewBag.IsCompany == true)
                                     {
@@ -441,9 +443,9 @@
                                     }
 
                                 </ul>
-                            }
+                            </li>
+                        }
 
-                        </li>
                         }
 
 

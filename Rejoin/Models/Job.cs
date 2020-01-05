@@ -24,7 +24,7 @@ namespace Rejoin.Models
 
         public bool IsActive { get; set; }
 
-        [Column(TypeName = "date")]
+        [Column(TypeName = "datetime")]
         public DateTime CreatedAt { get; set; }
 
         [Required]

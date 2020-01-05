@@ -38,8 +38,8 @@
                                 <!-- Tabs -->
                                 <ul class="nav panel-tabs">
                                     <li class=""><a href="#tab1" class="active" data-toggle="tab">All (@ViewBag.AllJobs.Count)</a></li>
-                                    <li><a href="#tab2" data-toggle="tab">Active (@ViewBag.ActiveJobs)</a></li>
-                                    <li><a href="#tab3" data-toggle="tab">Deactive (@ViewBag.DeactiveJobs)</a></li>
+                                    <li><a href="#tab2" data-toggle="tab">Active (@ViewBag.ActiveJobs.Count)</a></li>
+                                    <li><a href="#tab3" data-toggle="tab">Deactive (@ViewBag.DeactiveJobs.Count)</a></li>
                                     @*<li><a href="#tab4" data-toggle="tab">Sold (03)</a></li>
                                         <li><a href="#tab5" data-toggle="tab">Active (03)</a></li>
                                         <li><a href="#tab6" data-toggle="tab">Expired (01)</a></li>*@
@@ -72,7 +72,7 @@
                                                         <div class="media mt-0 mb-0">
                                                             <div class="media-body">
                                                                 <div class="card-item-desc p-0">
-                                                                    <a href="#" class="text-dark"><h4 class="font-weight-semibold">@item.Title</h4></a>
+                                                                    <a asp-action="details" asp-controller="job" asp-route-id="@item.JobId" asp-route-data="@item.Title-in-@item.user.FirstName" class="text-dark"><h4 class="font-weight-semibold">@item.Title</h4></a>
                                                                     <a href="#"><i class="fa fa-clock-o w-4"></i>  @item.CreatedAt.ToString("dd.MM.yyyy")</a><br>
                                                                     <a href="#"><i class="fa fa-tag w-4"></i> @item.Jobtype </a>
                                                                 </div>
@@ -127,38 +127,53 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <label class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" name="checkbox" value="checkbox">
-                                                        <span class="custom-control-label"></span>
-                                                    </label>
-                                                </td>
-                                                <td>
-                                                    <div class="media mt-0 mb-0">
-                                                        <div class="media-body">
-                                                            <div class="card-item-desc p-0">
-                                                                <a href="#" class="text-dark"><h4 class="font-weight-semibold">BPO Jobs</h4></a>
-                                                                <a href="#"><i class="fa fa-clock-o w-4"></i>  Feb-21-2018 , 16:54</a><br>
-                                                                <a href="#"><i class="fa fa-tag w-4"></i> Part Time</a>
+                                            @foreach (Job item in ViewBag.ActiveJobs)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <label class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" name="checkbox" value="checkbox">
+                                                            <span class="custom-control-label"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <div class="media mt-0 mb-0">
+                                                            <div class="media-body">
+                                                                <div class="card-item-desc p-0">
+                                                                    <a asp-action="details" asp-controller="job" asp-route-id="@item.Title-in-@item.user.FirstName" class="text-dark"><h4 class="font-weight-semibold">@item.Title</h4></a>
+                                                                    <a href="#"><i class="fa fa-clock-o w-4"></i>  @item.CreatedAt.ToString("dd.MM.yyyy")</a><br>
+                                                                    <a href="#"><i class="fa fa-tag w-4"></i> @item.Jobtype </a>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                                <td><i class="fa fa-map-marker mr-1 text-muted"></i>Ambrosia</td>
-                                                <td class="font-weight-semibold fs-16">$54 - $60</td>
-                                                <td>
-                                                    <a href="#" class="badge badge-warning">Published</a>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-success btn-sm text-white" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                                                    <a class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
-                                                    <a class="btn btn-info btn-sm text-white" data-toggle="tooltip" data-original-title="Save to Wishlist"><i class="fa fa-heart-o"></i></a>
-                                                    <a class="btn btn-primary btn-sm text-white" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                    <td><i class="fa fa-map-marker mr-1 text-muted"></i>@item.Location</td>
+                                                    <td class="font-weight-semibold fs-16">@item.Salary.ToString("0") $</td>
+                                                    <td>
+                                                        @if (item.IsActive == true)
+                                                        {
+                                                            <a href="#" class="badge badge-success">Active</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a href="#" class="badge badge-danger">Deactive</a>
+                                                        }
+                                                    </td>
+                                                    <td>
 
-
+                                                        @if (item.IsActive == true)
+                                                        {
+                                                            <a asp-action="edit" asp-controller="job" asp-route-id="@item.JobId" class="btn btn-success btn-sm text-white" data-toggle="tooltip" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                            <a asp-action="deactivate" asp-controller="job" asp-route-id="@item.JobId" class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-original-title="Deactive it"><i class="fas fa-times"></i></a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a asp-action="activate" asp-controller="job" asp-route-id="@item.JobId" class="btn btn-success btn-sm text-white" data-toggle="tooltip" data-original-title="Active it"><i class="fas fa-check"></i></a>
+                                                        }
+                                                        <a class="btn btn-primary btn-sm text-white" data-toggle="tooltip" data-original-title="View Appliers"><i class="fas fa-eye"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }
                                         </tbody>
                                     </table>
                                 </div>
@@ -175,36 +190,53 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <label class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" name="checkbox" value="checkbox">
-                                                        <span class="custom-control-label"></span>
-                                                    </label>
-                                                </td>
-                                                <td>
-                                                    <div class="media mt-0 mb-0">
-                                                        <div class="media-body">
-                                                            <div class="card-item-desc p-0">
-                                                                <a href="#" class="text-dark"><h4 class="font-weight-semibold">Admin</h4></a>
-                                                                <a href="#"><i class="fa fa-clock-o w-4"></i>  Nov-15-2019 , 12:45</a><br>
-                                                                <a href="#"><i class="fa fa-tag w-4"></i> Full Time</a>
+                                            @foreach (Job item in ViewBag.DeactiveJobs)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <label class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" name="checkbox" value="checkbox">
+                                                            <span class="custom-control-label"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <div class="media mt-0 mb-0">
+                                                            <div class="media-body">
+                                                                <div class="card-item-desc p-0">
+                                                                    <a asp-action="details" asp-controller="job" asp-route-id="@item.Title-in-@item.user.FirstName" class="text-dark"><h4 class="font-weight-semibold">@item.Title</h4></a>
+                                                                    <a href="#"><i class="fa fa-clock-o w-4"></i>  @item.CreatedAt.ToString("dd.MM.yyyy")</a><br>
+                                                                    <a href="#"><i class="fa fa-tag w-4"></i> @item.Jobtype </a>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                                <td><i class="fa fa-map-marker mr-1 text-muted"></i> Gondal</td>
-                                                <td class="font-weight-semibold fs-16">$22 - $34</td>
-                                                <td>
-                                                    <a href="#" class="badge badge-primary">featured</a>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-success btn-sm text-white" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                                                    <a class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
-                                                    <a class="btn btn-info btn-sm text-white" data-toggle="tooltip" data-original-title="Save to Wishlist"><i class="fa fa-heart-o"></i></a>
-                                                    <a class="btn btn-primary btn-sm text-white" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                    <td><i class="fa fa-map-marker mr-1 text-muted"></i>@item.Location</td>
+                                                    <td class="font-weight-semibold fs-16">@item.Salary.ToString("0") $</td>
+                                                    <td>
+                                                        @if (item.IsActive == true)
+                                                        {
+                                                            <a href="#" class="badge badge-success">Active</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a href="#" class="badge badge-danger">Deactive</a>
+                                                        }
+                                                    </td>
+                                                    <td>
+
+                                                        @if (item.IsActive == true)
+                                                        {
+                                                            <a asp-action="edit" asp-controller="job" asp-route-id="@item.JobId" class="btn btn-success btn-sm text-white" data-toggle="tooltip" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                            <a asp-action="deactivate" asp-controller="job" asp-route-id="@item.JobId" class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-original-title="Deactive it"><i class="fas fa-times"></i></a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a asp-action="activate" asp-controller="job" asp-route-id="@item.JobId" class="btn btn-success btn-sm text-white" data-toggle="tooltip" data-original-title="Active it"><i class="fas fa-check"></i></a>
+                                                        }
+                                                        <a class="btn btn-primary btn-sm text-white" data-toggle="tooltip" data-original-title="View Appliers"><i class="fas fa-eye"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }
                                         </tbody>
                                     </table>
                                 </div>

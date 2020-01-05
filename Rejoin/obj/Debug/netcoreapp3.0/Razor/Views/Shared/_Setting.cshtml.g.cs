@@ -33,8 +33,15 @@ using Rejoin.ViewModels;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\SAMED\source\repos\Rejoin\Rejoin\Views\_ViewImports.cshtml"
+using Rejoin.Injections;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"dc1b3655e3069fb54b1d53897202acd4804ea7d5", @"/Views/Shared/_Setting.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"cd001c40f00a80d791a63aa7a7791b403640b751", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"31085bcb7515f4e4d54e7915ea9852b8b55c91de", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__Setting : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<AccountIndexViewModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("brround"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -101,7 +108,7 @@ using Rejoin.ViewModels;
             <div class=""profile-pic-img"">
                 <span class=""bg-success dots"" data-toggle=""tooltip"" data-placement=""top"" title=""online""></span>
                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "dc1b3655e3069fb54b1d53897202acd4804ea7d58607", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "dc1b3655e3069fb54b1d53897202acd4804ea7d58781", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -142,7 +149,7 @@ AddHtmlAttributeValue("", 913, User, 913, 5, false);
 #line hidden
 #nullable disable
             WriteLiteral("</h4></a>\r\n        </div>\r\n    </div>\r\n    <div class=\"item1-links  mb-0\">\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc1b3655e3069fb54b1d53897202acd4804ea7d511082", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc1b3655e3069fb54b1d53897202acd4804ea7d511256", async() => {
                 WriteLiteral("\r\n            <span class=\"icon1 mr-2\"><i class=\"fas fa-edit fs-16\"></i></span> Edit Profile\r\n        ");
             }
             );
@@ -170,7 +177,7 @@ AddHtmlAttributeValue("", 913, User, 913, 5, false);
 #line hidden
 #nullable disable
             WriteLiteral("            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc1b3655e3069fb54b1d53897202acd4804ea7d512878", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc1b3655e3069fb54b1d53897202acd4804ea7d513052", async() => {
                 WriteLiteral("\r\n                <span class=\" icon1 mr-2\"><i class=\"fas fa-briefcase fs-16\"></i></span> My Jobs\r\n            ");
             }
             );
@@ -189,7 +196,7 @@ AddHtmlAttributeValue("", 913, User, 913, 5, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc1b3655e3069fb54b1d53897202acd4804ea7d514448", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc1b3655e3069fb54b1d53897202acd4804ea7d514622", async() => {
                 WriteLiteral("\r\n                <span class=\" icon1 mr-2\"><i class=\"fas fa-plus-square fs-16\"></i></span> Submit Job\r\n            ");
             }
             );
@@ -220,7 +227,7 @@ AddHtmlAttributeValue("", 913, User, 913, 5, false);
 #line hidden
 #nullable disable
             WriteLiteral("                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc1b3655e3069fb54b1d53897202acd4804ea7d516305", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc1b3655e3069fb54b1d53897202acd4804ea7d516479", async() => {
                 WriteLiteral("\r\n                    <span class=\"icon1 mr-2\"><i class=\"far fa-file fs-16\"></i></span> Edit Resume\r\n                ");
             }
             );
@@ -249,7 +256,7 @@ AddHtmlAttributeValue("", 913, User, 913, 5, false);
 #line hidden
 #nullable disable
             WriteLiteral("                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc1b3655e3069fb54b1d53897202acd4804ea7d518116", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc1b3655e3069fb54b1d53897202acd4804ea7d518290", async() => {
                 WriteLiteral("\r\n                    <span class=\"icon1 mr-2\"><i class=\"far fa-file fs-16\"></i></span> Create Resume\r\n                ");
             }
             );
@@ -277,7 +284,7 @@ AddHtmlAttributeValue("", 913, User, 913, 5, false);
 #line hidden
 #nullable disable
             WriteLiteral("        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc1b3655e3069fb54b1d53897202acd4804ea7d519899", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc1b3655e3069fb54b1d53897202acd4804ea7d520073", async() => {
                 WriteLiteral("\r\n            <span class=\"icon1 mr-2\"><i class=\"fas fa-sign-out-alt fs-16\"></i></span> Logout\r\n        ");
             }
             );

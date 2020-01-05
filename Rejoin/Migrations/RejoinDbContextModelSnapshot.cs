@@ -65,7 +65,7 @@ namespace Rejoin.Migrations
                         .HasMaxLength(100);
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.Property<int>("ExpierenceYear")
                         .HasColumnType("int");
