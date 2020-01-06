@@ -34,6 +34,21 @@ namespace Rejoin.Controllers
             return View();
         }
 
+        public IActionResult Details(int id)
+        {
+            User Company = _context.Users.Include("Jobs").Where(u => u.UserId == id && u.IsCompany == true).FirstOrDefault();
+            ViewBag.Company = Company;
+            if(ViewBag.Company == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return View();
+            }
+           
+        }
+
 
     }
 }

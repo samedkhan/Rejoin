@@ -227,8 +227,18 @@ namespace Rejoin.Controllers
         {
             List<Job> AllJobs = _context.Jobs.Include(j => j.user).Where(j => j.user.UserId == id && j.IsActive == true).ToList();
             ViewBag.Jobs = AllJobs;
-            ViewBag.User = AllJobs[0].user;
-            return View();
+            ViewBag.User = _context.Users.Find(id);
+
+            if(ViewBag.User == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return View();
+            }
         }
+
+
     }
 }
