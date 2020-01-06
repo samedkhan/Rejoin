@@ -55,6 +55,11 @@ namespace Rejoin.Models
         [Column(TypeName = "ntext")]
         public string JobDescription { get; set; }
 
+
+        [Required]
+        [MaxLength(100)]
+        public string Category { get; set; }
+
         public int UserId { get; set; }
 
         public User user { get; set; }

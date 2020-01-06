@@ -90,64 +90,9 @@
                             <div class="card-body">
                                 <div class="row">
                                     <!--Job lists-->
-                                    @foreach (Job jobitem in @ViewBag.Company.Jobs)
-                                    {
-                                        if (jobitem.IsActive == true)
-                                        {
-                                            <div class="col-12">
-                                                <div class=" mb-lg-0">
-                                                    <div class="">
-                                                        <div class="item2-gl">
-                                                            <div class="tab-content pt-0">
-                                                                <div class="tab-pane active" id="tab-11">
-                                                                    <div class="card overflow-hidden br-0 overflow-hidden shadow-none">
-                                                                        <div class="d-md-flex">
-                                                                            <div class="p-0 m-0 item-card9-img">
-                                                                                <div class="item-card9-imgs">
-                                                                                    <a href="jobs.html"></a>
-                                                                                    <img src="~/images/users/@ViewBag.Company.Image" alt="img" class="h-100">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="card overflow-hidden  border-0 box-shadow-0 border-left br-0 mb-0">
-                                                                                <div class="card-body pt-0 pt-md-5">
-                                                                                    <div class="item-card9">
-                                                                                        <a asp-action="details" asp-controller="job" asp-route-id="@jobitem.JobId" asp-route-data="@jobitem.Title-in-@jobitem.user.FirstName" class="text-dark"><h4 class="font-weight-semibold mt-1">@jobitem.Title</h4></a>
-                                                                                        <div class="mt-2 mb-2">
-                                                                                            <a href="#" class="mr-4"><span><i class="fa fa-building-o text-muted mr-1"></i> @jobitem.City</span></a>
-                                                                                            <a href="#" class="mr-4"><span><i class="fa fa-map-marker text-muted mr-1"></i> @jobitem.Location</span></a>
-                                                                                            <a href="#" class="mr-4"><span><i class="fa fa fa-usd text-muted mr-1"></i>@jobitem.Salary</span></a>
-                                                                                            <a href="#" class="mr-4"><span><i class="fa fa-clock-o text-muted mr-1"></i> @jobitem.Jobtype</span></a>
-                                                                                            <a href="#" class="mr-4"><span><i class="fa fa-briefcase text-muted mr-1"></i> @jobitem.ExpierenceYear Year Exp</span></a>
-                                                                                        </div>
-                                                                                        <p class="mb-0 leading-tight">@jobitem.JobDescription</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="card-footer pt-3 pb-3">
-                                                                                    <div class="item-card9-footer d-sm-flex">
-                                                                                        <div class="d-flex align-items-center mb-3 mb-md-0 mt-auto posted">
-                                                                                            <div>
-                                                                                                <a href="profile.html" class="text-muted fs-12 mb-1">Posted by </a><span class="ml-0 fs-13"> @jobitem.user.FirstName</span>
-                                                                                                <small class="d-block text-default">@jobitem.CreatedAt.ToString("dd MMM yyyy / HH:MM")</small>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="ml-auto">
 
-                                                                                            <a class="btn btn-primary mt-3 mt-md-0" href="#" data-toggle="modal" data-target="#Applynow">Apply Now</a>
-                                                                                            <a href="jobs.html" class="mr-3"><i class="ion-checkmark-circled text-success mr-1"></i>Phone Verified</a>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        }
-                                    }
+                                    <partial name="_Jobs" />
+                                   
                                     <!--/Job lists-->
                                 </div>
                             </div>

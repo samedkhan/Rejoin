@@ -56,6 +56,7 @@ namespace Rejoin.Controllers
                     City = job.JobCreate.City,
                     Location = job.JobCreate.Location,
                     JobDescription = job.JobCreate.JobDescription,
+                    Category = job.JobCreate.Category,
                     CreatedAt = DateTime.Now,
                     IsActive = true,
                     UserId = _auth.User.UserId,
@@ -139,6 +140,7 @@ namespace Rejoin.Controllers
                 EditedJob.City = job.JobCreate.City;
                 EditedJob.Location = job.JobCreate.Location;
                 EditedJob.JobDescription = job.JobCreate.JobDescription;
+                EditedJob.Category = job.JobCreate.Category;
 
                 _context.Entry(EditedJob).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 _context.SaveChanges();
@@ -225,7 +227,7 @@ namespace Rejoin.Controllers
 
         public IActionResult Alljobscompany(int id)
         {
-            List<Job> AllJobs = _context.Jobs.Include(j => j.user).Where(j => j.user.UserId == id && j.IsActive == true).ToList();
+            List<Job> AllJobs = _context.Jobs.Include(j => j.user).Where(j => j.user.UserId == id).ToList();
             ViewBag.Jobs = AllJobs;
             ViewBag.User = _context.Users.Find(id);
 
@@ -239,6 +241,29 @@ namespace Rejoin.Controllers
             }
         }
 
+        public IActionResult Alljobs()
+        {
+            List<Job> Jobs = _context.Jobs.Include(j => j.user).Where(j=>j.IsActive==true).OrderByDescending(j => j.CreatedAt).ToList();
+            ViewBag.Jobs = Jobs;
+            return View();
+        }
+        public IActionResult Find(string? Category, string? Title)
+        {
+            List<Job> FindedJobs;
+            if (Category == "All" && Title == "")
+            {
+                FindedJobs = _context.Jobs.Include(j => j.user).Where(j => j.IsActive == true).OrderByDescending(j => j.CreatedAt).ToList();
+                
+            }
+            else
+            {
+                FindedJobs = _context.Jobs.Include(j => j.user).Where(j => j.IsActive == true && (j.Category.Contains(Category) || j.Title.Contains(Title))).OrderByDescending(j => j.CreatedAt).ToList();
+            }
+
+            ViewBag.Jobs = FindedJobs;
+            return View();
+        }
+       
 
     }
 }

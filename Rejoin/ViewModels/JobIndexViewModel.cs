@@ -12,9 +12,17 @@ namespace Rejoin.ViewModels
     {
         public JobCreateIndexViewModel JobCreate { get; set; }
 
+        public JobSeachViewModel JobSearch { get; set; }
 
     }
+    public class JobSeachViewModel
+    {
+        [MaxLength(100)]
+        public string Title { get; set; }
 
+        [MaxLength(100)]
+        public string Category { get; set; }
+    }
     public class JobCreateIndexViewModel
     {
         [Required(ErrorMessage = "Required")]
@@ -46,6 +54,10 @@ namespace Rejoin.ViewModels
         [Required(ErrorMessage = "Required")]
         [MaxLength(100)]
         public string Location { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [MaxLength(100)]
+        public string Category { get; set; }
 
         [Required(ErrorMessage = "Required")]
         [MaxLength(500)]

@@ -1,0 +1,91 @@
+﻿<div class="col-xl-3 col-lg-4 col-md-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="input-group">
+                <form method="get" asp-action="find" asp-controller="job" class="d-flex">
+                    <input type="text" name="Title" class="form-control br-tl-3 br-bl-3" placeholder="Search by Title">
+                    <div class="input-group-append ">
+                        <button type="submit" class="btn btn-primary br-tr-3 br-br-3">
+                            Search
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Categories</h3>
+        </div>
+        <form method="get" asp-action="find" asp-controller="job">
+            <div class="card-body">
+                <div class="" id="container">
+                    <div class="filter-product-checkboxs">
+                        <div class="form-group">
+                            <label class="custom-control custom-checkbox mb-3">
+                                <input type="radio" class="custom-control-input" name="Category" value="Administrator">
+                                <span class="custom-control-label">
+                                    <a href="#" class="text-dark">Administrator</a>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="custom-control custom-checkbox mb-3">
+                                <input type="radio" class="custom-control-input" name="Category" value="Chef">
+                                <span class="custom-control-label">
+                                    <a href="#" class="text-dark">Chef</a>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="custom-control custom-checkbox mb-3">
+                                <input type="radio" class="custom-control-input" name="Category" value="IT Technologies">
+                                <span class="custom-control-label">
+                                    <a href="#" class="text-dark">IT Technologies</a>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="custom-control custom-checkbox mb-3">
+                                <input type="radio" asp-route-data="Driver" class="custom-control-input" name="Category" value="Driver">
+                                <span class="custom-control-label">
+                                    <a href="#" class="text-dark">Driver</a>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="custom-control custom-checkbox mb-3">
+                                <input type="radio" class="custom-control-input" name="Category" value="Sales">
+                                <span class="custom-control-label">
+                                    <a href="#" class="text-dark">Sales</a>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="custom-control custom-checkbox mb-3">
+                                <input type="radio" class="custom-control-input" name="Category" value="Teachers/Lecturers">
+                                <span class="custom-control-label">
+                                    <a href="#" class="text-dark">Teachers/Lecturers</a>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="custom-control custom-checkbox mb-3">
+                                <input type="radio" class="custom-control-input" name="Category" value="Life Insurance">
+                                <span class="custom-control-label">
+                                    <a href="#" class="text-dark">Life Insurance</a>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-warning btn-block">Apply Filter</button>
+            </div>
+        </form>
+
+    </div>
+
+</div>

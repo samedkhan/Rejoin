@@ -1,0 +1,86 @@
+﻿@model JobIndexViewModel
+@{
+    ViewData["Title"] = "Find";
+}
+<!--Sliders Section-->
+<div>
+    <div class="cover-image sptb-1 bg-background" data-image-src="../assets/images/banners/banner1.jpg">
+        <div class="header-text1 mb-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-10 col-lg-12 col-md-12 d-block mx-auto">
+                        <div class="text-center text-white ">
+                            <h1 class="mb-5"><span class="font-weight-bold">@ViewBag.Jobs.Count</span> Jobs Available</h1>
+                        </div>
+                        <partial name="_Search" />
+                    </div>
+                </div>
+            </div>
+        </div><!-- /header-text -->
+    </div>
+</div>
+<!--/Sliders Section-->
+<!--Breadcrumb-->
+<div class="bg-white border-bottom">
+    <div class="container">
+        <div class="page-header">
+            <h4 class="page-title">Jobs list</h4>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Jobs list</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!--/Breadcrumb-->
+<!--Job listing-->
+<section class="sptb">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 col-lg-8 col-md-12">
+                <!--Job lists-->
+                <div class=" mb-lg-0">
+                    <div class="">
+                        <div class="item2-gl">
+                            <div class=" mb-0">
+                                <div class="">
+                                    <div class="p-5 bg-white item2-gl-nav d-flex">
+                                        <h6 class="mb-0 mt-3">Showing <b>1 to 10</b> of @ViewBag.Jobs.Count Entries</h6>
+                                        <ul class="nav item2-gl-menu mt-1 ml-auto">
+                                            <li class=""><a href="#tab-11" class="active show" data-toggle="tab" title="List style"><i class="fa fa-list"></i></a></li>
+                                            <li><a href="#tab-12" data-toggle="tab" class="" title="Grid"><i class="fa fa-th"></i></a></li>
+                                        </ul>
+                                        <div class="d-flex">
+                                            <label class="mr-2 mt-2 mb-sm-1">Sort By:</label>
+                                            <select name="Category" ="item" class="form-control select2-no-search w-70">
+                                                <option value="1">Relavant</option>
+                                                <option value="2">Newest First</option>
+                                                <option value="3">Highest Paid</option>
+                                                <option value="4">Loweest Paid</option>
+                                                <option value="5">High Ratings</option>
+                                                <option value="6">Popular</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab-11">
+                                    <partial name="_Jobs" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--/Job lists-->
+            </div>
+
+            <!--Right Side Content-->
+            <partial name="_Categories" />
+            <!--/Right Side Content-->
+        </div>
+    </div>
+</section>
+<!--/Job Listings-->

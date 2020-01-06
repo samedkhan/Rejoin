@@ -14,7 +14,7 @@
             <div class="profile-pic mb-0">
                 <img src="~/images/users/@Image" class="brround avatar-xxl" alt="user">
                 <div class="">
-                    <a href="userprofile.html" class="text-dark"><h4 class="mt-3 mb-1 font-weight-semibold">@ViewBag.User.FirstName @ViewBag.User.LastName</h4></a>
+                    <a asp-action="details" asp-controller="company" asp-route-id="@ViewBag.User.UserId" class="text-dark"><h4 class="mt-3 mb-1 font-weight-semibold">@ViewBag.User.FirstName @ViewBag.User.LastName</h4></a>
                     @*<span class="text-gray">Hr Recruiter of IT Hardware & Network Pvt ltd</span>*@
                     <span class="text-muted">Member Since @ViewBag.User.CreatedAt.ToString("MMMM yyyy")</span>
                     <h6 class="mt-2 mb-0"><a asp-controller="job" asp-action="alljobscompany" asp-route-id="@ViewBag.User.UserId" class="btn btn-primary btn-sm">See All Ads</a></h6>

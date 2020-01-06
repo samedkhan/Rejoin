@@ -38,6 +38,7 @@ namespace Rejoin.Controllers
         {
             User Company = _context.Users.Include("Jobs").Where(u => u.UserId == id && u.IsCompany == true).FirstOrDefault();
             ViewBag.Company = Company;
+            ViewBag.Jobs = Company.Jobs.Where(j=>j.IsActive==true).ToList();
             if(ViewBag.Company == null)
             {
                 return NotFound();

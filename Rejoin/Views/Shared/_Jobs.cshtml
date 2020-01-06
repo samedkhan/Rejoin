@@ -1,0 +1,41 @@
+﻿@foreach (Job item in ViewBag.Jobs)
+{
+    <div class="card overflow-hidden br-0 overflow-hidden">
+        <div class="d-md-flex">
+            <div class="p-0 m-0 item-card9-img">
+                <div class="item-card9-imgs">
+                    <a asp-controller="company" asp-action="details" asp-route-id="@item.UserId"></a>
+                    <img src="~/images/users/@item.user.Image" alt="img" class="h-100">
+                </div>
+            </div>
+            <div class="card overflow-hidden  border-0 box-shadow-0 border-left br-0 mb-0">
+                <div class="card-body pt-0 pt-md-5">
+                    <div class="item-card9">
+                        <a asp-controller="job" asp-action="details" asp-route-id="@item.JobId" asp-route-data="@item.Title" class="text-dark"><h4 class="font-weight-semibold mt-1">@item.Title</h4></a>
+                        <div class="mt-2 mb-2">
+                            <a href="#" class="mr-4"><span><i class="far fa-building text-muted mr-1"></i> @item.City</span></a>
+                            <a href="#" class="mr-4"><span><i class="fa fa-map-marker text-muted mr-1"></i> @item.Location</span></a>
+                            <a href="#" class="mr-4"><span><i class="fas fa-dollar-sign text-muted mr-1"></i> @item.Salary.ToString("0") $</span></a>
+                            <a href="#" class="mr-4"><span><i class="fas fa-clock text-muted mr-1"></i> @item.Jobtype</span></a>
+                            <a href="#" class="mr-4"><span><i class="fa fa-briefcase text-muted mr-1"></i> @item.ExpierenceYear Year Exp</span></a>
+                        </div>
+                        <p class="mb-0 leading-tight">@item.JobDescription</p>
+                    </div>
+                </div>
+                <div class="card-footer pt-3 pb-3">
+                    <div class="item-card9-footer d-flex">
+                        <div class="d-flex align-items-center mb-3 mb-md-0 mt-auto posted">
+                            <div>
+                                <a href="profile.html" class="text-muted fs-12 mb-1">Posted by </a><span class="ml-1 fs-13"> @item.user.FirstName</span>
+                                <small class="d-block text-default">@item.CreatedAt.ToString("dd MMM yyyy / HH:MM")</small>
+                            </div>
+                        </div>
+                        <div class="ml-auto">
+                            <a href="jobs.html" class="btn btn-primary mt-3 mt-sm-0"> Apply Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,27 @@
+﻿
+<div class="search-background bg-transparent">
+    <form method="get" asp-controller="job" asp-action="find">
+        <div class="form row no-gutters justify-content-around">
+            <div class="form-group  col-xl-5 col-lg-5 col-md-12 mb-0 bg-white ">
+                <input name="Title" type="text" class="form-control input-lg br-tr-md-0 br-br-md-0" id="text4" placeholder="Enter Your Keywords">
+            </div>
+            <div class="form-group col-xl-3 col-lg-3 col-md-12 select2-lg mb-0 bg-white">
+                <select name="Category" class="form-control select2-show-search  border-bottom-0" data-placeholder="Select Category">
+                    <optgroup label="Categories">
+                        <option value="All">All Categories</option>
+                        <option value="Administrator">Administrator</option>
+                        <option value="Chef">Chef</option>
+                        <option value="IT Technologies">IT Technologies</option>
+                        <option value="Driver">Driver</option>
+                        <option value="Sales">Sales</option>
+                        <option value="TeachersLecturers">Teachers/Lecturers</option>
+                        <option value="Life Insurance">Life Insurance</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-12 mb-0">
+                <button type="submit" class="btn btn-lg btn-block btn-secondary br-tl-md-0 br-bl-md-0">Search Here</button>
+            </div>
+        </div>
+    </form>
+</div>
