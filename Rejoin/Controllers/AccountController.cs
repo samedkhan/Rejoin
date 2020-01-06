@@ -192,7 +192,7 @@ namespace Rejoin.Controllers
                 {
                     if (LoggedUser.HasJobSubmit != true)
                     {
-                        return RedirectToAction("index", "job", new { id = LoggedUser.UserId });
+                        return RedirectToAction("create", "job", new { id = LoggedUser.UserId });
                     }
                 }
                 else 

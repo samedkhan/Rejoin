@@ -81,6 +81,8 @@ namespace Rejoin.Models
         [MaxLength(500)]
         public string PersonalSkills { get; set; }
 
-        public UserResume Resume { get; set; }
+        public UserResume Resumes { get; set; }
+
+        public List<Job> Jobs { get; set; }
     }
 }

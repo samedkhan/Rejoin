@@ -86,7 +86,7 @@ namespace Rejoin.ViewModels
         [MaxLength(100)]
         public string Google { get; set; }
 
-        [MinLength(50, ErrorMessage = "Write about yourself minimum 50 character")]
+       
         [Column(TypeName = "ntext")]
         public string AboutMe { get; set; }
 

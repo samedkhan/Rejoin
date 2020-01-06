@@ -269,7 +269,7 @@ namespace Rejoin.Migrations
             modelBuilder.Entity("Rejoin.Models.Job", b =>
                 {
                     b.HasOne("Rejoin.Models.User", "user")
-                        .WithMany()
+                        .WithMany("Jobs")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -278,7 +278,7 @@ namespace Rejoin.Migrations
             modelBuilder.Entity("Rejoin.Models.UserResume", b =>
                 {
                     b.HasOne("Rejoin.Models.User", "user")
-                        .WithOne("Resume")
+                        .WithOne("Resumes")
                         .HasForeignKey("Rejoin.Models.UserResume", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
