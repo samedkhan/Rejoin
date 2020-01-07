@@ -34,7 +34,17 @@ namespace Rejoin.Controllers
             }
             else
             {
+                JobIndexViewModel data = new JobIndexViewModel();
+                data.Breadcumb = new BreadcumbViewModel
+                {
+                    Title = "Submit Job",
+                    Path = new Dictionary<string, string>()
+                };
+                data.Breadcumb.Path.Add("index", "Home");
+                data.Breadcumb.Path.Add("My Dashboard", null);
+                data.Breadcumb.Path.Add("Submit Job", null);
 
+                ViewBag.Partial = data.Breadcumb;
                 return View();
             }
         }
@@ -95,6 +105,17 @@ namespace Rejoin.Controllers
                 ViewBag.AllJobs = _context.Jobs.Where(j => j.UserId == _auth.User.UserId).OrderByDescending(j => j.CreatedAt).ToList();
                 ViewBag.ActiveJobs = _context.Jobs.Where(j => j.UserId == _auth.User.UserId && j.IsActive == true).OrderByDescending(j => j.CreatedAt).ToList();
                 ViewBag.DeactiveJobs = _context.Jobs.Where(j => j.UserId == _auth.User.UserId && j.IsActive != true).OrderByDescending(j => j.CreatedAt).ToList();
+                JobIndexViewModel data = new JobIndexViewModel();
+                data.Breadcumb = new BreadcumbViewModel
+                {
+                    Title = "My Jobs",
+                    Path = new Dictionary<string, string>()
+                };
+                data.Breadcumb.Path.Add("index", "Home");
+                data.Breadcumb.Path.Add("My Dashboard", null);
+                data.Breadcumb.Path.Add("My Jobs", null);
+
+                ViewBag.Partial = data.Breadcumb;
 
                 return View();
             }
@@ -115,6 +136,16 @@ namespace Rejoin.Controllers
                 }
                 else
                 {
+                    JobIndexViewModel data = new JobIndexViewModel();
+                    data.Breadcumb = new BreadcumbViewModel
+                    {
+                        Title = "Edit Job",
+                        Path = new Dictionary<string, string>()
+                    };
+                    data.Breadcumb.Path.Add("index", "Home");
+                    data.Breadcumb.Path.Add("Edit Job", null);
+
+                    ViewBag.Partial = data.Breadcumb;
                     ViewBag.Job = job;
                     return View();
                 }
@@ -153,6 +184,7 @@ namespace Rejoin.Controllers
                 {
                     JobCreate = job.JobCreate
                 };
+             
 
                 return View("~/Views/Job/Index.cshtml");
             }
@@ -219,8 +251,22 @@ namespace Rejoin.Controllers
             }
             else
             {
+
                 ViewBag.JobDetail = JobDetail;
                 ViewBag.User = JobDetail.user;
+
+                JobIndexViewModel data = new JobIndexViewModel();
+                data.Breadcumb = new BreadcumbViewModel
+                {
+                    Title = "Job Details",
+                    Path = new Dictionary<string, string>()
+                };
+                data.Breadcumb.Path.Add("index", "Home");
+                data.Breadcumb.Path.Add("myjob", "Job");
+                data.Breadcumb.Path.Add("Job Details", null);
+
+                ViewBag.Partial = data.Breadcumb;
+
                 return View();
             }
         }
@@ -237,14 +283,36 @@ namespace Rejoin.Controllers
             }
             else
             {
+                JobIndexViewModel data = new JobIndexViewModel();
+                data.Breadcumb = new BreadcumbViewModel
+                {
+                    Title = "Active Vacancies",
+                    Path = new Dictionary<string, string>()
+                };
+                data.Breadcumb.Path.Add("index", "Home");
+                data.Breadcumb.Path.Add("Active Vacancies", null);
+
+                ViewBag.Partial = data.Breadcumb;
                 return View();
             }
         }
 
         public IActionResult Alljobs()
         {
+
             List<Job> Jobs = _context.Jobs.Include(j => j.user).Where(j=>j.IsActive==true).OrderByDescending(j => j.CreatedAt).ToList();
             ViewBag.Jobs = Jobs;
+            JobIndexViewModel data = new JobIndexViewModel();
+            data.Breadcumb = new BreadcumbViewModel
+            {
+                Title = "Jobs",
+                Path = new Dictionary<string, string>()
+            };
+            data.Breadcumb.Path.Add("index", "Home");
+            data.Breadcumb.Path.Add("Pages", null);
+            data.Breadcumb.Path.Add("Jobs", null);
+
+            ViewBag.Partial = data.Breadcumb;
             return View();
         }
         public IActionResult Find(string? Category, string? Title)
@@ -261,6 +329,17 @@ namespace Rejoin.Controllers
             }
 
             ViewBag.Jobs = FindedJobs;
+            JobIndexViewModel data = new JobIndexViewModel();
+            data.Breadcumb = new BreadcumbViewModel
+            {
+                Title = "Jobs",
+                Path = new Dictionary<string, string>()
+            };
+            data.Breadcumb.Path.Add("index", "Home");
+            data.Breadcumb.Path.Add("Pages", null);
+            data.Breadcumb.Path.Add("Jobs", null);
+
+            ViewBag.Partial = data.Breadcumb;
             return View();
         }
        

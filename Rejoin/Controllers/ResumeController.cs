@@ -31,7 +31,16 @@ namespace Rejoin.Controllers
             }
             else
             {
+                ResumeIndexViewModel data = new ResumeIndexViewModel();
+                data.Breadcumb = new BreadcumbViewModel
+                {
+                    Title = "Create Resume",
+                    Path = new Dictionary<string, string>()
+                };
+                data.Breadcumb.Path.Add("index", "Home");
+                data.Breadcumb.Path.Add("Create Resume", null);
 
+                ViewBag.Partial = data.Breadcumb;
                 return View();
             }
         }

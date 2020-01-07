@@ -11,15 +11,17 @@ namespace Rejoin.ViewModels
 {
     public class AccountIndexViewModel
     {
+        public BreadcumbViewModel Breadcumb { get; set; }
         public AccountLoginModel Login { get; set; }
         public AccountRegisterModel Register { get; set; }
         public AccountProfileModel Profile { get; set; }
        
+
     }
 
     public class AccountRegisterModel
     {
-
+       
         [Required(ErrorMessage = "Required")]
         [MaxLength(50)]
         public string Username { get; set; }
@@ -40,6 +42,7 @@ namespace Rejoin.ViewModels
 
     public class AccountLoginModel
     {
+
         [Required(ErrorMessage = "Required")]
         [MaxLength(50)]
         public string Username { get; set; }

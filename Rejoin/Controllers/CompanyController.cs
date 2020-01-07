@@ -30,7 +30,19 @@ namespace Rejoin.Controllers
         {
             List<User> Companies = _context.Users.Include("Jobs").Where(u => u.IsCompany == true).OrderByDescending(u => u.CreatedAt).ToList();
             ViewBag.Companies = Companies;
-            
+
+            CompanyIndexViewModel data = new CompanyIndexViewModel();
+            data.Breadcumb = new BreadcumbViewModel
+            {
+                Title = "Companies",
+                Path = new Dictionary<string, string>()
+            };
+            data.Breadcumb.Path.Add("index", "Home");
+            data.Breadcumb.Path.Add("Pages", null);
+            data.Breadcumb.Path.Add("Companies", null);
+
+            ViewBag.Partial = data.Breadcumb;
+
             return View();
         }
 
@@ -45,6 +57,16 @@ namespace Rejoin.Controllers
             }
             else
             {
+                CompanyIndexViewModel data = new CompanyIndexViewModel();
+                data.Breadcumb = new BreadcumbViewModel
+                {
+                    Title = "Company",
+                    Path = new Dictionary<string, string>()
+                };
+                data.Breadcumb.Path.Add("index", "Home");
+                data.Breadcumb.Path.Add("Company Details", null);
+
+                ViewBag.Partial = data.Breadcumb;
                 return View();
             }
            

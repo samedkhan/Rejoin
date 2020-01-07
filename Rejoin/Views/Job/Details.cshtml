@@ -4,20 +4,9 @@
     ViewData["Title"] = "Details";
 }
 
-<!--BreadCrumb-->
-<div class="bg-white border-bottom">
-    <div class="container">
-        <div class="page-header">
-            <h4 class="page-title">Job Details</h4>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Categories</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Job Details</li>
-            </ol>
-        </div>
-    </div>
-</div>
-<!--/BreadCrumb-->
+@*Breadcrumb-Mini*@
+<partial name="_BreadcumbMini" model="ViewBag.Partial" />
+
 <!--Job listing-->
 <section class="sptb">
     <div class="container">
@@ -48,7 +37,7 @@
                                                     <li class="mr-5"><a href="#" class="icons"><i class="fas fa-briefcase mr-1 text-muted"></i>@ViewBag.User.FirstName @ViewBag.User.LastName</a></li>
                                                     <li class="mr-5"><a href="#" class="icons"><i class="fas fa-map-marker-alt mr-1 text-muted"></i>@ViewBag.JobDetail.Location</a></li>
                                                     <li class="mr-5"><a href="#" class="icons"><i class="fas fa-calendar-alt mr-1 text-muted"></i> @relativetime.PublishedTime(ViewBag.JobDetail.CreatedAt) </a></li>
-                                                   
+
                                                 </ul>
                                             </div>
 
@@ -93,7 +82,7 @@
                                                 <td><span>:</span></td>
                                                 <td><span> @ViewBag.JobDetail.ExpierenceYear years</span></td>
                                             </tr>
-        
+
                                             <tr>
                                                 <td class="w-150 px-0"><span class="font-weight-semibold">Salary</span></td>
                                                 <td><span>:</span></td>
@@ -104,7 +93,7 @@
                                                 <td><span>:</span></td>
                                                 <td><span> @ViewBag.JobDetail.Location </span></td>
                                             </tr>
-                                           
+
                                         </tbody>
                                     </table>
                                 </div>

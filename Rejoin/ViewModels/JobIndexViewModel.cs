@@ -10,6 +10,7 @@ namespace Rejoin.ViewModels
 {
     public class JobIndexViewModel
     {
+        public BreadcumbViewModel Breadcumb { get; set; }
         public JobCreateIndexViewModel JobCreate { get; set; }
 
         public JobSeachViewModel JobSearch { get; set; }

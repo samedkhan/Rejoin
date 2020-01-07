@@ -144,6 +144,8 @@ C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Razor\Views\Jo
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Razor\Views\Job\Myjob.cshtml.g.cs
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Razor\Views\Resume\Index.cshtml.g.cs
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Razor\Views\Shared\Error.cshtml.g.cs
+C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_Breadcumb.cshtml.g.cs
+C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_BreadcumbMini.cshtml.g.cs
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_Categories.cshtml.g.cs
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_Company.cshtml.g.cs
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_Jobs.cshtml.g.cs
@@ -159,4 +161,3 @@ C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Rejoin.Views.p
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Rejoin.csproj.CopyComplete
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Rejoin.dll
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Rejoin.pdb
-C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Rejoin.csprojAssemblyReference.cache

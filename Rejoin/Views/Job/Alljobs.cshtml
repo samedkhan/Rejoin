@@ -12,6 +12,7 @@
                         <div class="text-center text-white ">
                             <h1 class="mb-5"><span class="font-weight-bold">@ViewBag.Jobs.Count</span> Jobs Available</h1>
                         </div>
+                        @*Search panel*@
                         <partial name="_Search" />
                     </div>
                 </div>
@@ -20,20 +21,10 @@
     </div>
 </div>
 <!--/Sliders Section-->
-<!--Breadcrumb-->
-<div class="bg-white border-bottom">
-    <div class="container">
-        <div class="page-header">
-            <h4 class="page-title">Jobs list</h4>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Jobs list</li>
-            </ol>
-        </div>
-    </div>
-</div>
-<!--/Breadcrumb-->
+
+@*Breadcrumb-Mini*@
+<partial name="_BreadcumbMini" model="ViewBag.Partial" />
+
 <!--Job listing-->
 <section class="sptb">
     <div class="container">
@@ -53,7 +44,7 @@
                                         </ul>
                                         <div class="d-flex">
                                             <label class="mr-2 mt-2 mb-sm-1">Sort By:</label>
-                                            <select name="Category"="item" class="form-control select2-no-search w-70">
+                                            <select name="Category" ="item" class="form-control select2-no-search w-70">
                                                 <option value="1">Relavant</option>
                                                 <option value="2">Newest First</option>
                                                 <option value="3">Highest Paid</option>
@@ -71,14 +62,14 @@
                                 </div>
                             </div>
                         </div>
-                       
+
                     </div>
                 </div>
                 <!--/Job lists-->
             </div>
 
             <!--Right Side Content-->
-            
+
             <partial name="_Categories" />
 
             <!--/Right Side Content-->

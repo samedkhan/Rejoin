@@ -28,6 +28,17 @@ namespace Rejoin.Controllers
 
         public IActionResult Register()
         {
+            AccountIndexViewModel data = new AccountIndexViewModel();
+            data.Breadcumb = new BreadcumbViewModel
+            {
+                Title = "Register",
+                Path = new Dictionary<string, string>()
+            };
+            data.Breadcumb.Path.Add("index", "Home");
+            data.Breadcumb.Path.Add("Register", null);
+
+            ViewBag.Partial = data.Breadcumb;
+
             return View();
         }
 
@@ -66,6 +77,7 @@ namespace Rejoin.Controllers
                 else
                 {
                     ModelState.AddModelError("Email", "This user is already in registered");
+                    
                 }
 
             }
@@ -74,13 +86,33 @@ namespace Rejoin.Controllers
             {
                 Register = register
             };
+            data.Breadcumb = new BreadcumbViewModel
+            {
+                Title = "Register",
+                Path = new Dictionary<string, string>()
+            };
+            data.Breadcumb.Path.Add("index", "Home");
+            data.Breadcumb.Path.Add("Register", null);
 
-            return View("~/Views/Account/Register.cshtml", data);
+            ViewBag.Partial = data.Breadcumb;
+
+            return View("~/Views/Account/Register.cshtml");
 
         }
 
         public IActionResult Login()
         {
+            AccountIndexViewModel data = new AccountIndexViewModel();
+            data.Breadcumb = new BreadcumbViewModel
+            {
+                Title = "Login",
+                Path = new Dictionary<string, string>()
+            };
+            data.Breadcumb.Path.Add("index", "Home");
+            data.Breadcumb.Path.Add("Login", null);
+
+            ViewBag.Partial = data.Breadcumb;
+
             return View();
         }
 
@@ -118,6 +150,16 @@ namespace Rejoin.Controllers
                 Login = login
             };
 
+            data.Breadcumb = new BreadcumbViewModel
+            {
+                Title = "Login",
+                Path = new Dictionary<string, string>()
+            };
+            data.Breadcumb.Path.Add("index", "Home");
+            data.Breadcumb.Path.Add("Login", null);
+
+            ViewBag.Partial = data.Breadcumb;
+
             return View("~/Views/Account/Login.cshtml");
         }
 
@@ -143,6 +185,17 @@ namespace Rejoin.Controllers
             }
             else
             {
+                AccountIndexViewModel data = new AccountIndexViewModel();
+                data.Breadcumb = new BreadcumbViewModel
+                {
+                    Title = "Edit Profile",
+                    Path = new Dictionary<string, string>()
+                };
+                data.Breadcumb.Path.Add("index", "Home");
+                data.Breadcumb.Path.Add("My Dashboard", null);
+                data.Breadcumb.Path.Add("My Profile", null);
+
+                ViewBag.Partial = data.Breadcumb;
                 return View();
             }
             

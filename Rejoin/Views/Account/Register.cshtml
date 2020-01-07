@@ -3,24 +3,9 @@
     ViewData["Title"] = "Register";
 }
 
-<!--Breadcrumb-->
-<section>
-    <div class="bannerimg cover-image bg-background3" data-image-src="../assets/images/banners/banner2.jpg">
-        <div class="header-text mb-0">
-            <div class="container">
-                <div class="text-center text-white">
-                    <h1 class="">Register</h1>
-                    <ol class="breadcrumb text-center">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                        <li class="breadcrumb-item active text-white" aria-current="page">Register</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--/Breadcrumb-->
+@*Breadcrumb*@
+<partial name="_Breadcumb" model="ViewBag.Partial" />
+
 <!--Register-section-->
 <section class="sptb">
     <div class="container customerpage">
@@ -28,27 +13,27 @@
             <div class="single-page">
                 <div class="col-lg-5 col-xl-4 col-md-6 d-block mx-auto">
                     <div class="wrapper wrapper2">
-                      
+
                         <form class="card-body" asp-controller="Account" asp-action="Register" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label>Username</label>
                                 <input asp-for="Register.Username" />
-                                <span asp-validation-for="Register.Username"  class="text-danger"></span>
+                                <span asp-validation-for="Register.Username" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label>E-mail</label>
                                 <input asp-for="Register.Email" />
                                 <span asp-validation-for="Register.Email" class="text-danger"></span>
-                                @Html.ValidationMessage("Email", new { @class="text-danger"})
+                                @Html.ValidationMessage("Email", new { @class = "text-danger" })
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
                                 <input asp-for="Register.Password" />
-                                <span asp-validation-for="Register.Password"  class="text-danger"></span>
+                                <span asp-validation-for="Register.Password" class="text-danger"></span>
                             </div>
                             <div class="form-group d-flex align-items-center justify-content-start">
-                                <input type="radio" asp-for="Register.IsCompany" value="false" style="height:25px;width:10%" checked/><span class="text-primary mr-5">User</span>
-                                <input type="radio" asp-for="Register.IsCompany" value="true" style="height:25px;width:10%"/><span class="text-primary">Company</span>
+                                <input type="radio" asp-for="Register.IsCompany" value="false" style="height:25px;width:10%" checked /><span class="text-primary mr-5">User</span>
+                                <input type="radio" asp-for="Register.IsCompany" value="true" style="height:25px;width:10%" /><span class="text-primary">Company</span>
 
                                 <span asp-validation-for="Register.IsCompany" class="text-danger"></span>
                             </div>

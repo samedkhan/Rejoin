@@ -237,7 +237,7 @@
         <div class="horizontal-main clearfix">
             <div class="horizontal-mainwrapper container clearfix">
                 <div class="desktoplogo">
-                    <a href="index.html" class="d-flex">
+                    <a asp-controller="home" asp-action="index" class="d-flex">
                         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                              width="404.000000pt" height="361.000000pt" viewBox="0 0 404.000000 361.000000"
                              preserveAspectRatio="xMidYMid meet">
@@ -282,8 +282,7 @@
                         <li>
                             <a asp-action="index" asp-controller="home">Home</a>
                         </li>
-                        <li><a href="about.html">About Us </a></li>
-                        <li><a href="contact.html"> Contact Us <span class="horizontal-arrow"></span></a></li>
+                       
                         <li>
                             <a href="#">Pages <span class="fa fa-caret-down m-0"></span></a>
                             <ul class="sub-menu">
@@ -418,6 +417,9 @@
                                         </li>
                                         <li>
                                             <a asp-action="details" asp-controller="company" asp-route-id="@ViewBag.UserId">My Company Details</a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="job" asp-action="alljobscompany" asp-route-id="@ViewBag.UserId">My Active Vacancies</a>
                                         </li>
                                         <li>
                                             <a asp-controller="job" asp-action="myjob">My Jobs</a>

@@ -9,6 +9,7 @@ namespace Rejoin.ViewModels
 {
     public class ResumeIndexViewModel
     {
+        public BreadcumbViewModel Breadcumb { get; set; }
         public ResumeModel Resume { get; set; }
         public EducationViewModel Education { get; set; }
         public WorkViewModel Work { get; set; }

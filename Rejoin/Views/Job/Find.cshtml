@@ -12,6 +12,7 @@
                         <div class="text-center text-white ">
                             <h1 class="mb-5"><span class="font-weight-bold">@ViewBag.Jobs.Count</span> Jobs Available</h1>
                         </div>
+                        @*Search*@
                         <partial name="_Search" />
                     </div>
                 </div>
@@ -20,20 +21,10 @@
     </div>
 </div>
 <!--/Sliders Section-->
-<!--Breadcrumb-->
-<div class="bg-white border-bottom">
-    <div class="container">
-        <div class="page-header">
-            <h4 class="page-title">Jobs list</h4>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Jobs list</li>
-            </ol>
-        </div>
-    </div>
-</div>
-<!--/Breadcrumb-->
+
+@*Breadcrumb-Mini*@
+<partial name="_BreadcumbMini" model="ViewBag.Partial" />
+
 <!--Job listing-->
 <section class="sptb">
     <div class="container">

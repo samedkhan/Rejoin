@@ -4,23 +4,10 @@
 }
 
 <!--Sliders Section-->
-<section>
-    <div class="bannerimg cover-image bg-background3" data-image-src="~/images/banners/banner2.jpg">
-        <div class="header-text mb-0">
-            <div class="container">
-                <div class="text-center text-white">
-                    <h1>Edit Job</h1>
-                    <ol class="breadcrumb text-center">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                        <li class="breadcrumb-item active text-white" aria-current="page">Edit Job</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+@*Breadcrumb*@
+<partial name="_Breadcumb" model="ViewBag.Partial" />
 <!--/Sliders Section-->
+
 <!--Job posts-section-->
 <section class="sptb">
     <div class="container">
@@ -190,7 +177,7 @@
                             </div>
                             <div class="form-group text-dark">
                                 <label class="form-label text-dark">Job Description</label>
-                                <textarea asp-for="JobCreate.JobDescription" class="form-control" rows="5" placeholder="@ViewBag.Job.JobDescription"  required></textarea>
+                                <textarea asp-for="JobCreate.JobDescription" class="form-control" rows="5" placeholder="@ViewBag.Job.JobDescription" required></textarea>
                                 <span asp-validation-for="JobCreate.JobDescription" class="text-danger"></span>
                             </div>
                             <h3 class="card-title mt-6 mb-3">Recruiter details </h3>

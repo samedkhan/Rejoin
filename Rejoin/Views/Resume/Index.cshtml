@@ -19,23 +19,10 @@
 }
 
 <!--Sliders Section-->
-<section>
-    <div class="bannerimg cover-image bg-background3" data-image-src="~/images/banners/banner2.jpg">
-        <div class="header-text mb-0">
-            <div class="container">
-                <div class="text-center text-white">
-                    <h1>Create Resume</h1>
-                    <ol class="breadcrumb text-center">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                        <li class="breadcrumb-item active text-white" aria-current="page">Create Resume</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+@*Breadcrumb*@
+<partial name="_Breadcumb" model="ViewBag.Partial" />
 <!--/Sliders Section-->
+
 <!--Job posts-section-->
 <section class="sptb">
     <div class="container">
@@ -319,7 +306,7 @@
                             </div>
                         </div>
                     </div>
-           
+
                     <div class="card">
                         <div class="card-header ">
                             <h3 class="card-title">Personal Skills</h3>
@@ -344,198 +331,198 @@
 
                 <script>
                     $(document).ready(function () {
-                        
+
                         $('.btn-education').on("click", function () {
-                           
+
                             $('.edu-card').after(`<div class="card edu-card">
-                        <div class="card-header ">
-                            <h3 class="card-title">Education</h3 >
-                            <div class="card-options">
-                                <a class="btn btn-light btn-sm btn-education"><i class="fa fa-plus"></i> Add Another</a>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label class="form-label text-dark">School Name</label>
-                                <input type="text" class="form-control" placeholder="School Name" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label text-dark">Qualification</label>
-                                <input type="text" class="form-control" placeholder="Qualification" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label text-dark">Period</label>
-                                <div class="row gutters-xs">
-                                    <div class="col-6">
-                                        <select class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
-                                            <option value="0">Since</option>
-                                            <option value="2019">2019</option>
-                                            <option value="2018">2018</option>
-                                            <option value="2017">2017</option>
-                                            <option value="2016">2016</option>
-                                            <option value="2015">2015</option>
-                                            <option value="2014">2014</option>
-                                            <option value="2013">2013</option>
-                                            <option value="2012">2012</option>
-                                            <option value="2011">2011</option>
-                                            <option value="2010">2010</option>
-                                            <option value="2009">2009</option>
-                                            <option value="2008">2008</option>
-                                            <option value="2007">2007</option>
-                                            <option value="2006">2006</option>
-                                            <option value="2005">2005</option>
-                                            <option value="2004">2004</option>
-                                            <option value="2003">2003</option>
-                                            <option value="2002">2002</option>
-                                            <option value="2001">2001</option>
-                                            <option value="2000">2000</option>
-                                            <option value="1999">1999</option>
-                                            <option value="1998">1998</option>
-                                            <option value="1997">1997</option>
-                                            <option value="1996">1996</option>
-                                            <option value="1995">1995</option>
-                                            <option value="1994">1994</option>
-                                            <option value="1993">1993</option>
-                                            <option value="1992">1992</option>
-                                            <option value="1991">1991</option>
-                                            <option value="1990">1990</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-6">
-                                        <select class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
-                                            <option value="0">Untill</option>
-                                            <option value="2019">2019</option>
-                                            <option value="2018">2018</option>
-                                            <option value="2017">2017</option>
-                                            <option value="2016">2016</option>
-                                            <option value="2015">2015</option>
-                                            <option value="2014">2014</option>
-                                            <option value="2013">2013</option>
-                                            <option value="2012">2012</option>
-                                            <option value="2011">2011</option>
-                                            <option value="2010">2010</option>
-                                            <option value="2009">2009</option>
-                                            <option value="2008">2008</option>
-                                            <option value="2007">2007</option>
-                                            <option value="2006">2006</option>
-                                            <option value="2005">2005</option>
-                                            <option value="2004">2004</option>
-                                            <option value="2003">2003</option>
-                                            <option value="2002">2002</option>
-                                            <option value="2001">2001</option>
-                                            <option value="2000">2000</option>
-                                            <option value="1999">1999</option>
-                                            <option value="1998">1998</option>
-                                            <option value="1997">1997</option>
-                                            <option value="1996">1996</option>
-                                            <option value="1995">1995</option>
-                                            <option value="1994">1994</option>
-                                            <option value="1993">1993</option>
-                                            <option value="1992">1992</option>
-                                            <option value="1991">1991</option>
-                                            <option value="1990">1990</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`);
+                                        <div class="card-header ">
+                                            <h3 class="card-title">Education</h3 >
+                                            <div class="card-options">
+                                                <a class="btn btn-light btn-sm btn-education"><i class="fa fa-plus"></i> Add Another</a>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label class="form-label text-dark">School Name</label>
+                                                <input type="text" class="form-control" placeholder="School Name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label text-dark">Qualification</label>
+                                                <input type="text" class="form-control" placeholder="Qualification" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label text-dark">Period</label>
+                                                <div class="row gutters-xs">
+                                                    <div class="col-6">
+                                                        <select class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
+                                                            <option value="0">Since</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2000">2000</option>
+                                                            <option value="1999">1999</option>
+                                                            <option value="1998">1998</option>
+                                                            <option value="1997">1997</option>
+                                                            <option value="1996">1996</option>
+                                                            <option value="1995">1995</option>
+                                                            <option value="1994">1994</option>
+                                                            <option value="1993">1993</option>
+                                                            <option value="1992">1992</option>
+                                                            <option value="1991">1991</option>
+                                                            <option value="1990">1990</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <select class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
+                                                            <option value="0">Untill</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2000">2000</option>
+                                                            <option value="1999">1999</option>
+                                                            <option value="1998">1998</option>
+                                                            <option value="1997">1997</option>
+                                                            <option value="1996">1996</option>
+                                                            <option value="1995">1995</option>
+                                                            <option value="1994">1994</option>
+                                                            <option value="1993">1993</option>
+                                                            <option value="1992">1992</option>
+                                                            <option value="1991">1991</option>
+                                                            <option value="1990">1990</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>`);
                         })
 
                         $('.btn-work').on("click", function () {
                             $('.work-card').after(` <div class="card">
-                        <div class="card-header ">
-                            <h3 class="card-title">Working Experience</h3>
-                            <div class="card-options">
+                                        <div class="card-header ">
+                                            <h3 class="card-title">Working Experience</h3>
+                                            <div class="card-options">
 
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label class="form-label text-dark">Company Name</label>
-                                <input type="text" class="form-control" placeholder="Company Name" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label text-dark">Position</label>
-                                <input type="text" class="form-control" placeholder="Position" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label text-dark">Period</label>
-                                <div class="row gutters-xs">
-                                    <div class="col-6">
-                                        <select class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
-                                            <option value="0">Since</option>
-                                            <option value="2019">2019</option>
-                                            <option value="2018">2018</option>
-                                            <option value="2017">2017</option>
-                                            <option value="2016">2016</option>
-                                            <option value="2015">2015</option>
-                                            <option value="2014">2014</option>
-                                            <option value="2013">2013</option>
-                                            <option value="2012">2012</option>
-                                            <option value="2011">2011</option>
-                                            <option value="2010">2010</option>
-                                            <option value="2009">2009</option>
-                                            <option value="2008">2008</option>
-                                            <option value="2007">2007</option>
-                                            <option value="2006">2006</option>
-                                            <option value="2005">2005</option>
-                                            <option value="2004">2004</option>
-                                            <option value="2003">2003</option>
-                                            <option value="2002">2002</option>
-                                            <option value="2001">2001</option>
-                                            <option value="2000">2000</option>
-                                            <option value="1999">1999</option>
-                                            <option value="1998">1998</option>
-                                            <option value="1997">1997</option>
-                                            <option value="1996">1996</option>
-                                            <option value="1995">1995</option>
-                                            <option value="1994">1994</option>
-                                            <option value="1993">1993</option>
-                                            <option value="1992">1992</option>
-                                            <option value="1991">1991</option>
-                                            <option value="1990">1990</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-6">
-                                        <select class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
-                                            <option value="0">Untill</option>
-                                            <option value="2019">2019</option>
-                                            <option value="2018">2018</option>
-                                            <option value="2017">2017</option>
-                                            <option value="2016">2016</option>
-                                            <option value="2015">2015</option>
-                                            <option value="2014">2014</option>
-                                            <option value="2013">2013</option>
-                                            <option value="2012">2012</option>
-                                            <option value="2011">2011</option>
-                                            <option value="2010">2010</option>
-                                            <option value="2009">2009</option>
-                                            <option value="2008">2008</option>
-                                            <option value="2007">2007</option>
-                                            <option value="2006">2006</option>
-                                            <option value="2005">2005</option>
-                                            <option value="2004">2004</option>
-                                            <option value="2003">2003</option>
-                                            <option value="2002">2002</option>
-                                            <option value="2001">2001</option>
-                                            <option value="2000">2000</option>
-                                            <option value="1999">1999</option>
-                                            <option value="1998">1998</option>
-                                            <option value="1997">1997</option>
-                                            <option value="1996">1996</option>
-                                            <option value="1995">1995</option>
-                                            <option value="1994">1994</option>
-                                            <option value="1993">1993</option>
-                                            <option value="1992">1992</option>
-                                            <option value="1991">1991</option>
-                                            <option value="1990">1990</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`)
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label class="form-label text-dark">Company Name</label>
+                                                <input type="text" class="form-control" placeholder="Company Name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label text-dark">Position</label>
+                                                <input type="text" class="form-control" placeholder="Position" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label text-dark">Period</label>
+                                                <div class="row gutters-xs">
+                                                    <div class="col-6">
+                                                        <select class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
+                                                            <option value="0">Since</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2000">2000</option>
+                                                            <option value="1999">1999</option>
+                                                            <option value="1998">1998</option>
+                                                            <option value="1997">1997</option>
+                                                            <option value="1996">1996</option>
+                                                            <option value="1995">1995</option>
+                                                            <option value="1994">1994</option>
+                                                            <option value="1993">1993</option>
+                                                            <option value="1992">1992</option>
+                                                            <option value="1991">1991</option>
+                                                            <option value="1990">1990</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <select class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
+                                                            <option value="0">Untill</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2000">2000</option>
+                                                            <option value="1999">1999</option>
+                                                            <option value="1998">1998</option>
+                                                            <option value="1997">1997</option>
+                                                            <option value="1996">1996</option>
+                                                            <option value="1995">1995</option>
+                                                            <option value="1994">1994</option>
+                                                            <option value="1993">1993</option>
+                                                            <option value="1992">1992</option>
+                                                            <option value="1991">1991</option>
+                                                            <option value="1990">1990</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>`)
                         })
                     })
                 </script>
