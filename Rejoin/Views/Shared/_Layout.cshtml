@@ -406,7 +406,6 @@
 
                         @if (Context.Request.Cookies["token"] != null)
                         {
-
                             <li>
                                 <a href="#">My Dashboard <span class="fa fa-caret-down m-0"></span></a>
                                 <ul class="sub-menu">
@@ -436,7 +435,7 @@
                                         @if (ViewBag.HasResume == true)
                                         {
                                             <li>
-                                                <a asp-action="index" asp-controller="">Edit Resume</a>
+                                                <a asp-action="index" asp-controller="resume">Edit Resume</a>
                                             </li>
                                         }
                                         else
@@ -449,7 +448,6 @@
                                 </ul>
                             </li>
                         }
-
                         }
 
 

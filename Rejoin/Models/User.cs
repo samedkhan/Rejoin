@@ -70,16 +70,11 @@ namespace Rejoin.Models
 
         public bool HasJobSubmit { get; set; }
 
-        [MaxLength(100)]
-        public string JobProfession { get; set; }
+        public LookingJob LookingForJob { get; set; }
 
-        public int ExperienceYear { get; set; }
+       
 
-        public int ExperienceMonth { get; set; }
-
-        [Column(TypeName = "ntext")]
-        [MaxLength(500)]
-        public string PersonalSkills { get; set; }
+        public List<Language> KnownLanguages { get; set; }
 
         public UserResume Resumes { get; set; }
 

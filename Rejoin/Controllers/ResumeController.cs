@@ -34,29 +34,103 @@ namespace Rejoin.Controllers
                 ResumeIndexViewModel data = new ResumeIndexViewModel();
                 data.Breadcumb = new BreadcumbViewModel
                 {
-                    Title = "Create Resume",
                     Path = new Dictionary<string, string>()
                 };
+                if (_auth.User.HasResume == true)
+                {
+                    data.Breadcumb.Title = "Edit Resume";
+                }
+                else
+                {
+                    data.Breadcumb.Title = "Create Resume";
+                }
                 data.Breadcumb.Path.Add("index", "Home");
-                data.Breadcumb.Path.Add("Create Resume", null);
+                data.Breadcumb.Path.Add(data.Breadcumb.Title, null);
 
                 ViewBag.Partial = data.Breadcumb;
+             
                 return View();
             }
         }
 
         [HttpPost]
-        public IActionResult Create(ResumeIndexViewModel resume)
+        public JsonResult Create(ResumeModel model)
         {
-            User LoggedUser = _context.Users.Find(_auth.User.UserId);
+            //if (model.Upload != null)
+            //{
+            //    try
+            //    {
+            //        candidate.Photo = _fileManager.Upload(model.Upload);
 
-            LoggedUser.JobProfession = resume.Resume.JobProfession;
-            LoggedUser.ExperienceYear = resume.Resume.ExperienceYear;
-            LoggedUser.ExperienceMonth = resume.Resume.ExperienceMonth;
-            LoggedUser.PersonalSkills = resume.Resume.PersonalSkills;
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        return Json(new
+            //        {
+            //            status = "OK",
+            //            StatusCode = 500,
+            //            message = "melumatlar yanlisdir",
+            //            data = candidate.Photo
+            //        });
+            //    }
+            //}
 
+            UserResume candidate = new UserResume();
 
-            return View();
+            candidate.JobProfession = model.JobProfession;
+            candidate.ExpierenceYear = model.ExperienceYear;
+            candidate.UserId = _auth.User.UserId;
+            candidate.PersonalSkill = model.PersonalSkill;
+
+            _context.UserResumes.Add(candidate);
+            _context.Users.Find(_auth.User.UserId).HasResume = true;
+            _context.SaveChanges();
+
+            if (model.Works != null)
+            {
+                for (var i = 0; i < model.Works.Count; i++)
+                {
+
+                    Work experience = new Work
+                    {
+                        CompanyName = model.Works[i].CompanyName,
+                        StartWorkYear = model.Works[i].StartWork,
+                        EndWorkYear = model.Works[i].EndWork,
+                        ResumeId = candidate.ResumeId,
+                        Position = model.Works[i].Position,
+                    };
+                    _context.Works.Add(experience);
+                    _context.SaveChanges();
+                }
+            }
+
+            if (model.Educations != null)
+            {
+                for (var i = 0; i < model.Educations.Count; i++)
+                {
+                    Education education = new Education
+                    {
+                        SchoolName = model.Educations[i].SchoolName,
+                        StartEducationYear = model.Educations[i].StartSchool,
+                        EndEducationYear = model.Educations[i].EndSchool,
+                        ResumeId = candidate.ResumeId,
+                        Qualification = model.Educations[i].Qualification
+                    };
+                    _context.Educations.Add(education);
+                    _context.SaveChanges();
+                }
+            }
+            return Json(new
+            {
+
+                status = "OK",
+                code = 200,
+                message = "added Cv",
+                data = model,
+                redirectUrl = Url.Action("Index", "Home"),
+                isRedirect = true
+            });
+
         }
     }
 }

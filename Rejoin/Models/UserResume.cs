@@ -12,10 +12,22 @@ namespace Rejoin.Models
         public int ResumeId { get; set; }
 
         [Required]
-        public User user { get; set; }
+        public int UserId { get; set; }
 
         [Required]
-        public int UserId { get; set; }
+        public User user { get; set; }
+
+        [MaxLength(100)]
+        [Required(ErrorMessage = "Required")]
+        public string JobProfession { get; set; }
+
+        [MaxLength(50)]
+        [Required]
+        public string PersonalSkill { get; set; }
+
+        [Required]
+        public int ExpierenceYear { get; set; }
+      
 
         public List<Work> works { get; set; }
 

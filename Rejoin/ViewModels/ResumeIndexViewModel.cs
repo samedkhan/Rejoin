@@ -22,11 +22,11 @@ namespace Rejoin.ViewModels
         [MaxLength(100)]
         [Required(ErrorMessage = "Required")]
         public string JobProfession { get; set; }
-
+     
         public int ExperienceYear { get; set; }
-
-        public int ExperienceMonth { get; set; }
-
+        [MaxLength(50)]
+        [Required]
+        public string PersonalSkill { get; set; }
         [Column(TypeName = "ntext")]
         [MaxLength(500)]
         public string PersonalSkills { get; set; }

@@ -23,5 +23,13 @@ namespace Rejoin.Data
         public DbSet<UserResume> UserResumes { get; set; }
 
         public DbSet<Job> Jobs { get; set; }
+
+
+        public DbSet<LookingJob> LookingJobs { get; set; }
+
+
+        public DbSet<Language> Languages { get; set; }
+
+
     }
 }

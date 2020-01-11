@@ -161,3 +161,4 @@ C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Rejoin.Views.p
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Rejoin.csproj.CopyComplete
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Rejoin.dll
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Rejoin.pdb
+C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Rejoin.csprojAssemblyReference.cache

@@ -114,6 +114,63 @@ namespace Rejoin.Migrations
                     b.ToTable("Jobs");
                 });
 
+            modelBuilder.Entity("Rejoin.Models.Language", b =>
+                {
+                    b.Property<int>("LanguageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("KnownLevel")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("LanguageId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Languages");
+                });
+
+            modelBuilder.Entity("Rejoin.Models.LookingJob", b =>
+                {
+                    b.Property<int>("LJId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("JobType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LocationAdress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MaxSalary")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MinSalary")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("LJId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("LookingJobs");
+                });
+
             modelBuilder.Entity("Rejoin.Models.User", b =>
                 {
                     b.Property<int>("UserId")
@@ -143,12 +200,6 @@ namespace Rejoin.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ExperienceMonth")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ExperienceYear")
-                        .HasColumnType("int");
-
                     b.Property<string>("Facebook")
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
@@ -174,10 +225,6 @@ namespace Rejoin.Migrations
                     b.Property<bool>("IsCompany")
                         .HasColumnType("bit");
 
-                    b.Property<string>("JobProfession")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
@@ -185,10 +232,6 @@ namespace Rejoin.Migrations
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PersonalSkills")
-                        .HasColumnType("ntext")
-                        .HasMaxLength(500);
 
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(10)")
@@ -217,6 +260,19 @@ namespace Rejoin.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ExpierenceYear")
+                        .HasColumnType("int");
+
+                    b.Property<string>("JobProfession")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("PersonalSkill")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -276,6 +332,24 @@ namespace Rejoin.Migrations
                     b.HasOne("Rejoin.Models.User", "user")
                         .WithMany("Jobs")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Rejoin.Models.Language", b =>
+                {
+                    b.HasOne("Rejoin.Models.User", "User")
+                        .WithMany("KnownLanguages")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Rejoin.Models.LookingJob", b =>
+                {
+                    b.HasOne("Rejoin.Models.User", "User")
+                        .WithOne("LookingForJob")
+                        .HasForeignKey("Rejoin.Models.LookingJob", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

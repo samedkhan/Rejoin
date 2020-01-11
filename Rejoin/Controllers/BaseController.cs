@@ -40,7 +40,7 @@ namespace Rejoin.Controllers
                 ViewBag.Google = usr.Google;
                 ViewBag.Since = usr.CreatedAt.ToString("MMMM yyyy");
                 ViewBag.UserId = usr.UserId;
-                
+                ViewBag.HasResume = usr.HasResume;
             }
 
             base.OnActionExecuting(context);
