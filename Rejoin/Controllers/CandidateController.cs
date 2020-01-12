@@ -46,5 +46,35 @@ namespace Rejoin.Controllers
 
             return View();
         }
+
+        public IActionResult Appliers(int JobId)
+        {
+            CandidateIndexViewModel data = new CandidateIndexViewModel();
+            data.Breadcumb = new BreadcumbViewModel
+            {
+                Title = "Appliers",
+                Path = new Dictionary<string, string>()
+            };
+            data.Breadcumb.Path.Add("index", "Home");
+            data.Breadcumb.Path.Add("My Jobs", null);
+            data.Breadcumb.Path.Add("Appliers", null);
+
+            ViewBag.Partial = data.Breadcumb;
+
+            List<Apply> applies = _context.Appliers.Include(a=>a.user).Where(a=>a.JobId==JobId).ToList();
+
+            List<User> Appliers = new List<User>();
+
+            foreach (Apply item in applies)
+            {
+                User Finded = _context.Users.Include(u=>u.Resumes).Where(u => u.UserId == item.UserId).FirstOrDefault();
+                Appliers.Add(Finded);
+            }
+
+            ViewBag.Candidates = Appliers;
+
+            return View();
+
+        }
     }   
 }

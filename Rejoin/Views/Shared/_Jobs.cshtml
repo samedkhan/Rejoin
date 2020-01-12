@@ -30,7 +30,7 @@
                                 <small class="d-block text-default">@item.CreatedAt.ToString("dd MMM yyyy / HH:MM")</small>
                             </div>
                         </div>
-                        @if (ViewBag.UserId != null)
+                        @if (ViewBag.UserId != null && ViewBag.User.IsCompany != true)
                         {
                             @if (item.Appliers.Count != 0)
                             {

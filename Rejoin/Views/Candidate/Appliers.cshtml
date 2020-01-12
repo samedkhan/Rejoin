@@ -1,0 +1,428 @@
+﻿
+@{
+    ViewData["Title"] = "Appliers";
+}
+
+<!--Sliders Section-->
+@*Breadcrumb*@
+<partial name="_Breadcumb" model="ViewBag.Partial" />
+<!--/Sliders Section-->
+
+<!--Job listing-->
+<section class="sptb">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 col-lg-8 col-md-12">
+                <div class="card item2-gl ">
+                    <div class=" mb-0">
+                        <div class="">
+                            <div class="p-5 bg-white item2-gl-nav d-flex">
+                                <h6 class="mb-0 mt-2">Showing <b>1 to 10</b> of @ViewBag.Candidates.Count entries</h6>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/Candidates List-->
+                Candidates
+                <partial name="_Candidates" />
+
+                <!--/Candidates List-->
+            </div>
+
+            <!--/Right side-->
+            @*<div class="col-xl-4 col-lg-4 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search">
+                                <div class="input-group-append ">
+                                    <button type="button" class="btn btn-primary">
+                                        Search
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Categories</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="accordion" id="accordion">
+                                <div class="card border-bottom shadow-none">
+                                    <div class="card-header fs-14" id="acchead12">
+                                        <h4 class="mb-0 fs-14 collapsed" data-toggle="collapse" data-target="#accbody12" aria-controls="accbody12">Categories</h4>
+                                    </div>
+                                    <div id="accbody12" class="collapse card-body" aria-labelledby="acchead12" data-parent="#accordion">
+                                        <div class="filter-product-checkboxs">
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox1" value="option1">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Computer Operator<span class="label label-secondary float-right">14</span></a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox2" value="option2">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Admin<span class="label label-secondary float-right">22</span></a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox3" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Chef<span class="label label-secondary float-right">78</span></a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox4" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Beautician<span class="label label-secondary float-right">35</span></a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox5" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">IT/Hardware<span class="label label-secondary float-right">23</span></a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox6" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Driver<span class="label label-secondary float-right">14</span></a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox7" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">IT/Software<span class="label label-secondary float-right">45</span></a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox7" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">HR Recruiter<span class="label label-secondary float-right">34</span></a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox7" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Sales<span class="label label-secondary float-right">18</span></a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox7" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Teachers/Lecturers<span class="label label-secondary float-right">02</span></a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox7" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Life Insurance<span class="label label-secondary float-right">15</span></a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox7" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Delivery Boy<span class="label label-secondary float-right">32</span></a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox7" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Web Designer<span class="label label-secondary float-right">23</span></a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-0">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox7" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Web Developer<span class="label label-secondary float-right">19</span></a>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card border-bottom shadow-none">
+                                    <div class="card-header" id="acchead2">
+                                        <h4 class="mb-0 fs-14 collapsed" data-toggle="collapse" data-target="#accbody2" aria-controls="accbody2">Locality</h4>
+                                    </div>
+                                    <div id="accbody2" class="collapse card-body" aria-labelledby="acchead2" data-parent="#accordion">
+                                        <div class="filter-product-checkboxs">
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox1" value="option1">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Aldorria</a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox2" value="option2">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Alvonia</a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox3" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Almaigne</a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox4" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Bahavia</a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox5" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Berzerkistan</a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox6" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Carpania</a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox7" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Deltora</a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox7" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Durkadurkastan</a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox7" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Elbonia</a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox7" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Franchia</a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox7" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Gondal</a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox7" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Graustark</a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox7" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Holy Alliance</a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox7" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Islandia</a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-0">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox7" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Kangan</a>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card card border-bottom shadow-none">
+                                    <div class="card-header" id="acchead3">
+                                        <h4 class="mb-0 fs-14 collapsed" data-toggle="collapse" data-target="#accbody3" aria-controls="accbody3">Education</h4>
+                                    </div>
+                                    <div id="accbody3" class="collapse card-body" aria-labelledby="acchead3" data-parent="#accordion">
+                                        <div class="filter-product-checkboxs">
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox1" value="option1">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">10th Class</a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox2" value="option2">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Inter</a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox3" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Diploma</a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox4" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">ITI</a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox5" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Degree</a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox6" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">B Tech</a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox7" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">BE</a>
+                                                </span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox mb-0">
+                                                <input type="checkbox" class="custom-control-input" name="checkbox7" value="option3">
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">Post Graduate</a>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card border-bottom shadow-none">
+                                    <div class="card-header" id="acchead4">
+                                        <h4 class="mb-0 fs-14 collapsed" data-toggle="collapse" data-target="#accbody4" aria-controls="accbody4">Salary Range</h4>
+                                    </div>
+                                    <div id="accbody4" class="collapse card-body" aria-labelledby="acchead4" data-parent="#accordion">
+                                        <div class="input-group">
+                                            <div class="d-flex">
+                                                <div class="pr-2">
+                                                    <input type="text" class="form-control br-tl-7 br-bl-7" placeholder="Minimum">
+                                                </div>
+                                                <div class="pr-2">
+                                                    <input type="text" class="form-control br-tl-7 br-bl-7" placeholder="Maximum">
+                                                </div>
+                                                <div class="">
+                                                    <button type="button" class="btn btn-primary btn-block">
+                                                        Search
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card shadow-none mb-0">
+                                    <div class="card-header" id="acchead5">
+                                        <h4 class="mb-0 fs-14 collapsed" data-toggle="collapse" data-target="#accbody5" aria-controls="accbody5">Experience (in Years)</h4>
+                                    </div>
+                                    <div id="accbody5" class="collapse card-body" aria-labelledby="acchead5" data-parent="#accordion">
+                                        <div class="input-group">
+                                            <div class="d-flex">
+                                                <div class="pr-2 experience">
+                                                    <select class="form-control select2-no-search w-100" data-placeholder="Select">
+                                                        <optgroup label="Categories">
+                                                            <option value="0">0</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="10">10</option>
+                                                            <option value="11">11</option>
+                                                            <option value="12">12</option>
+                                                        </optgroup>
+                                                    </select>
+                                                </div>
+                                                <div class="pr-2 experience">
+                                                    <select class="form-control select2-no-search w-100" data-placeholder="Select">
+                                                        <optgroup label="Categories">
+                                                            <option value="0">0</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="10">10</option>
+                                                            <option value="11">11</option>
+                                                            <option value="12">12</option>
+                                                        </optgroup>
+                                                    </select>
+                                                </div>
+                                                <div class="">
+                                                    <button type="button" class="btn btn-primary btn-block">
+                                                        Search
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-header border-top">
+                            <h3 class="card-title">Condition</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="filter-product-checkboxs">
+                                <label class="custom-control custom-checkbox mb-2">
+                                    <input type="checkbox" class="custom-control-input" name="checkbox1" value="option1">
+                                    <span class="custom-control-label">
+                                        Part time
+                                    </span>
+                                </label>
+                                <label class="custom-control custom-checkbox mb-2">
+                                    <input type="checkbox" class="custom-control-input" name="checkbox2" value="option2">
+                                    <span class="custom-control-label">
+                                        Full time
+                                    </span>
+                                </label>
+                                <label class="custom-control custom-checkbox mb-0">
+                                    <input type="checkbox" class="custom-control-input" name="checkbox2" value="option2">
+                                    <span class="custom-control-label">
+                                        Work From Home
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-secondary btn-block">Apply Filter</a>
+                        </div>
+                    </div>
+                    <div class="card mb-0">
+                        <div class="card-header">
+                            <h3 class="card-title">Shares</h3>
+                        </div>
+                        <div class="card-body product-filter-desc">
+                            <div class="product-filter-icons text-center">
+                                <a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a>
+                                <a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a>
+                                <a href="#" class="google-bg"><i class="fa fa-google"></i></a>
+                                <a href="#" class="dribbble-bg"><i class="fa fa-dribbble"></i></a>
+                                <a href="#" class="pinterest-bg"><i class="fa fa-pinterest"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+            <!--/Right Side Content-->
+        </div>
+    </div>
+</section>
+<!--/Job Listings-->

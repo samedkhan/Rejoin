@@ -88,7 +88,7 @@
                                                         {
                                                             <a asp-action="activate" asp-controller="job" asp-route-id="@item.JobId" class="btn btn-success btn-sm text-white" data-toggle="tooltip" data-original-title="Active it"><i class="fas fa-check"></i></a>
                                                         }
-                                                        <a class="btn btn-primary btn-sm text-white" data-toggle="tooltip" data-original-title="View Appliers"><i class="fas fa-eye"></i></a>
+                                                        <a asp-action="appliers" asp-controller="candidate" asp-route-JobId="@item.JobId" class="btn btn-primary btn-sm text-white" data-toggle="tooltip" data-original-title="View Appliers"><i class="fas fa-eye"></i></a>
                                                     </td>
                                                 </tr>
                                             }

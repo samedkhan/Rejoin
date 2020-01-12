@@ -5,7 +5,7 @@
 
 <!--Sliders Section-->
 <div>
-    <div class="cover-image sptb-1 bg-background" data-image-src="../assets/images/banners/banner1.jpg">
+    <div class="cover-image sptb-1 bg-background" image-src="~/images/banners/banner1.jpg">
         <div class="header-text1 mb-0">
             <div class="container">
                 <div class="row">
@@ -39,53 +39,12 @@
                         </div>
                     </div>
                 </div>
-                <!--Candidate lists-->
-                @foreach (User item in ViewBag.Candidates)
-                {
-                    <div class="card card-listing overflow-hidden">
-                        <div class="power-ribbon power-ribbon-top-left text-warning"><span class="bg-warning"><i class="fa fa-bolt"></i></span></div>
-                        <div class="card-body">
-                            <div class="d-sm-flex">
-                                <span class="avatar-xxl  d-block br-7 cover-image mr-4"><img src="~/images/users/@item.Image"/></span>
-                                <div class="employer-icons">
-                                    <a href="company-details.html" class="font-weight-semibold fs-18 text-body">@item.FirstName  @item.LastName</a>
-                                    <div class="mt-2"><i class="fa fa-user mr-1"></i> @item.Resumes.JobProfession </div>
-                                    <div class="mt-1"><i class="fa fa-map-marker mr-1"></i>@item.City / @item.Country</div>
-                                    <div class="mt-1"><i class="fa fa-briefcase mr-1"></i> Experience: @item.Resumes.ExpierenceYear years</div>
-                                    <div class="mt-1">
-                                        <span><i class="fa fa-tag mr-1"></i> Skills :</span>
-                                        <span class="text-primary">@item.Resumes.PersonalSkill</span>
-                                    </div>
-                                </div>
-                                <div class="ml-auto">
-                                    <div class="product-filter-desc">
-                                        <div class="product-filter-icons text-center float-left">
-                                            <a href="#" class="border p-0"><i class="fab fa-facebook-f"></i></a>
-                                            <a href="#" class="border p-0"><i class="fab fa-google"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer bg-light-50">
-                            <div class="row">
-                                <div class="product-filter-desc col">
-                                    <div class="product-filter-icons text-center float-left">
-                                        <a href="tel:0-000-000-000" class="border text-primary p-0"><i class="fa fa-phone"></i></a>
-                                        <a href="#" class="border text-primary p-0" data-toggle="modal" data-target="#contact1"><i class="fa fa-envelope"></i></a>
-                                        <a href="#" class="border text-primary p-0" data-toggle="modal" data-target="#comment"><i class="fa fa-comment"></i></a>
-                                    </div>
-                                </div>
-                                <div class="col col-auto">
-                                    <div class="btn btn-light font-weight-semibold text-dark mt-1 mb-1 m-sm-0"><i class="fa fa-briefcase mr-1"></i>Exp:  @item.Resumes.ExpierenceYear years</div>
-                                   
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
+                <!--/Candidates List-->
 
-                <!--Candidate lists-->
+                @*Candidates*@
+                <partial name="_Candidates" />
+
+                <!--/Candidates List-->
             </div>
 
             <!--/Right side-->

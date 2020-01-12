@@ -64,8 +64,9 @@ namespace Rejoin.Controllers
             candidate.PersonalSkill = model.PersonalSkill;
 
             _context.UserResumes.Add(candidate);
-            _auth.User.HasResume = true;
             _context.SaveChanges();
+            _auth.User.HasResume = true;
+
 
             if (model.Works != null)
             {
