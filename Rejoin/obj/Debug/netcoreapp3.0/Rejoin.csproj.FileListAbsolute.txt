@@ -132,6 +132,7 @@ C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Rejoin.RazorCo
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Razor\Views\Account\Profile.cshtml.g.cs
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Razor\Views\Account\Register.cshtml.g.cs
+C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Razor\Views\Candidate\Index.cshtml.g.cs
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Razor\Views\Company\AllCompanies.cshtml.g.cs
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Razor\Views\Company\Details.cshtml.g.cs
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Razor\Views\Home\Index.cshtml.g.cs
@@ -161,4 +162,3 @@ C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Rejoin.Views.p
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Rejoin.csproj.CopyComplete
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Rejoin.dll
 C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Rejoin.pdb
-C:\Users\SAMED\source\repos\Rejoin\Rejoin\obj\Debug\netcoreapp3.0\Rejoin.csprojAssemblyReference.cache

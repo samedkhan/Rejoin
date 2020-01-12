@@ -56,25 +56,6 @@ namespace Rejoin.Controllers
         [HttpPost]
         public JsonResult Create(ResumeModel model)
         {
-            //if (model.Upload != null)
-            //{
-            //    try
-            //    {
-            //        candidate.Photo = _fileManager.Upload(model.Upload);
-
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        return Json(new
-            //        {
-            //            status = "OK",
-            //            StatusCode = 500,
-            //            message = "melumatlar yanlisdir",
-            //            data = candidate.Photo
-            //        });
-            //    }
-            //}
-
             UserResume candidate = new UserResume();
 
             candidate.JobProfession = model.JobProfession;
@@ -83,7 +64,7 @@ namespace Rejoin.Controllers
             candidate.PersonalSkill = model.PersonalSkill;
 
             _context.UserResumes.Add(candidate);
-            _context.Users.Find(_auth.User.UserId).HasResume = true;
+            _auth.User.HasResume = true;
             _context.SaveChanges();
 
             if (model.Works != null)
@@ -131,6 +112,160 @@ namespace Rejoin.Controllers
                 isRedirect = true
             });
 
+        }
+
+
+        [HttpPost]
+        public JsonResult Edit(ResumeModel model)
+        {
+            UserResume candidate = _context.UserResumes.Find(_auth.User.Resumes.ResumeId);
+
+            candidate.JobProfession = model.JobProfession;
+            candidate.ExpierenceYear = model.ExperienceYear;
+            candidate.UserId = _auth.User.UserId;
+            candidate.PersonalSkill = model.PersonalSkill;
+
+            _context.SaveChanges();
+
+            var Works = _context.Works.Where(e => e.ResumeId == _auth.User.Resumes.ResumeId).ToList();
+            if (model.Works != null)
+            {
+                if (model.Works.Count == Works.Count)
+                {
+                    for (var j = 0; j < Works.Count; j++)
+                    {
+                        Works[j].CompanyName = model.Works[j].CompanyName;
+                        Works[j].StartWorkYear = model.Works[j].StartWork;
+                        Works[j].EndWorkYear = model.Works[j].EndWork;
+                        Works[j].ResumeId = candidate.ResumeId;
+                        Works[j].Position = model.Works[j].Position;
+                    }
+                }
+                else if (model.Works.Count > Works.Count)
+                {
+                    for (var j = 0; j < Works.Count; j++)
+                    {
+                        Works[j].CompanyName = model.Works[j].CompanyName;
+                        Works[j].StartWorkYear = model.Works[j].StartWork;
+                        Works[j].EndWorkYear = model.Works[j].EndWork;
+                        Works[j].Position = model.Works[j].Position;
+                    }
+                    for (var k = Works.Count; k < model.Works.Count; k++)
+                    {
+                        Work experience = new Work
+                        {
+                            CompanyName = model.Works[k].CompanyName,
+                            StartWorkYear = model.Works[k].StartWork,
+                            EndWorkYear = model.Works[k].EndWork,
+                            ResumeId = candidate.ResumeId,
+                            Position = model.Works[k].Position
+                        };
+                        _context.Works.Add(experience);
+                        
+                    }
+                }
+                else if (Works.Count > model.Works.Count)
+                {
+
+                    for (var j = 0; j < model.Works.Count; j++)
+                    {
+                        Works[j].CompanyName = model.Works[j].CompanyName;
+                        Works[j].StartWorkYear = model.Works[j].StartWork;
+                        Works[j].EndWorkYear = model.Works[j].EndWork;
+                        Works[j].ResumeId = candidate.ResumeId;
+                        Works[j].Position = model.Works[j].Position;
+                    }
+                    for (var t = model.Works.Count; t < Works.Count; t++)
+                    {
+                        _context.Works.Remove(Works[t]);
+                    }
+
+                }
+
+            }
+            else if (model.Works == null)
+            {
+                for (var t = 0; t < Works.Count; t++)
+                {
+                    _context.Works.Remove(Works[t]);
+                }
+            }
+
+
+            //Educations of resume
+            var educations = _context.Educations.Where(e => e.ResumeId == _auth.User.Resumes.ResumeId).ToList();
+            if (model.Educations != null)
+            {
+                if (model.Educations.Count == educations.Count)
+                {
+                    for (var j = 0; j < educations.Count; j++)
+                    {
+                        educations[j].SchoolName = model.Educations[j].SchoolName;
+                        educations[j].StartEducationYear = model.Educations[j].StartSchool;
+                        educations[j].EndEducationYear = model.Educations[j].EndSchool;
+                        educations[j].ResumeId = candidate.ResumeId;
+                        educations[j].Qualification = model.Educations[j].Qualification;
+                    }
+                }
+                else if (model.Educations.Count > educations.Count)
+                {
+                    for (var j = 0; j < educations.Count; j++)
+                    {
+                        educations[j].SchoolName = model.Educations[j].SchoolName;
+                        educations[j].StartEducationYear = model.Educations[j].StartSchool;
+                        educations[j].EndEducationYear = model.Educations[j].EndSchool;
+                        educations[j].Qualification = model.Educations[j].Qualification;
+                    }
+                    for (var k = educations.Count; k < model.Educations.Count; k++)
+                    {
+                        Education education = new Education
+                        {
+                            SchoolName = model.Educations[k].SchoolName,
+                            StartEducationYear = model.Educations[k].StartSchool,
+                            EndEducationYear = model.Educations[k].EndSchool,
+                            ResumeId = candidate.ResumeId,
+                            Qualification = model.Educations[k].Qualification,
+                        };
+                        _context.Add(education);
+                    }
+
+                }
+                else if (educations.Count > model.Educations.Count)
+                {
+                    for (var j = 0; j < model.Educations.Count; j++)
+                    {
+                        educations[j].SchoolName = model.Educations[j].SchoolName;
+                        educations[j].StartEducationYear = model.Educations[j].StartSchool;
+                        educations[j].EndEducationYear = model.Educations[j].EndSchool;
+                        educations[j].Qualification = model.Educations[j].Qualification;
+                    }
+                    for (var t = model.Educations.Count; t < educations.Count; t++)
+                    {
+                        _context.Educations.Remove(educations[t]);
+                    }
+
+                }
+
+            }
+            else if (model.Educations == null)
+            {
+                for (var t = 0; t < educations.Count; t++)
+                {
+                    _context.Educations.Remove(educations[t]);
+                }
+            }
+
+            _context.SaveChanges();
+            return Json(new
+            {
+
+                status = "OK",
+                code = 200,
+                message = "added Cv",
+                data = model,
+                redirectUrl = Url.Action("Index", "Home"),
+                isRedirect = true
+            });
         }
     }
 }

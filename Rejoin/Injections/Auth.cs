@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Rejoin.Data;
 using Rejoin.Models;
 using System;
@@ -37,7 +38,10 @@ namespace Rejoin.Injections
                     return null;
                 }
 
-                User LoggedUser = _context.Users.FirstOrDefault(c => c.Token == token);
+                User LoggedUser = _context.Users.Include("Resumes").FirstOrDefault(c => c.Token == token);
+
+                LoggedUser.Resumes = _context.UserResumes.Include("educations").Include("works").FirstOrDefault(r => r.UserId == LoggedUser.UserId);
+
 
                 if (LoggedUser == null)
                 {

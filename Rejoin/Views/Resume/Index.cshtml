@@ -1,4 +1,4 @@
-﻿
+﻿@inject IAuth _auth
 @{
     ViewData["Title"] = "Index";
 }
@@ -24,11 +24,12 @@
 <!--/Sliders Section-->
 <!--Job posts-section-->
 <section class="sptb">
+
     <div class="container">
         <div class="row ">
 
             <div class="col-lg-8 col-md-12 col-md-12">
-                <form enctype="multipart/form-data">
+                <form method="post" enctype="multipart/form-data">
                     <div class="card dropify-image-avatar">
                         <div class="card-header ">
                             <h3 class="card-title">Personal Data</h3>
@@ -47,7 +48,14 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label text-dark">Job Profession</label>
-                                                <input name="resume-input-profession" type="text" class="form-control" placeholder="Job Profession" required>
+                                                @if (_auth.User.HasResume == true)
+                                                {
+                                                    <input value="@_auth.User.Resumes.JobProfession" name="resume-input-profession" type="text" class="form-control" placeholder="Job Profession" required>
+                                                }
+                                                else
+                                                {
+                                                    <input name="resume-input-profession" type="text" class="form-control" placeholder="Job Profession" required>
+                                                }
                                                 <span asp-validation-for="Resume.JobProfession" class="text-danger"></span>
                                             </div>
                                             <div class="form-group mb-md-0">
@@ -65,6 +73,10 @@
                                                 <div class="row gutters-xs">
                                                     <div class="col-6">
                                                         <select name="resume-input-exp" class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
+                                                            @if (_auth.User.HasResume == true)
+                                                            {
+                                                                <option value="@_auth.User.Resumes.ExpierenceYear" selected>@_auth.User.Resumes.ExpierenceYear</option>
+                                                            }
                                                             <option value="0">Year</option>
                                                             <option value="1">0</option>
                                                             <option value="2">1</option>
@@ -100,95 +112,205 @@
                                 <a class="btn btn-light btn-sm btn-education"><i class="fa fa-plus"></i> Add Another</a>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label class="form-label text-dark">School Name</label>
-                                <input name="resume-edu-school" type="text" class="form-control" placeholder="School Name" required>
-                                <span class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label text-dark">Qualification</label>
-                                <input name="resume-edu-quality" type="text" class="form-control" placeholder="Qualification" required>
-                                <span class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label text-dark">Period</label>
-                                <div class="row gutters-xs">
-                                    <div class="col-6">
-                                        <select name="resume-edu-since" class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
-                                            <option value="0">Since</option>
-                                            <option value="2019">2019</option>
-                                            <option value="2018">2018</option>
-                                            <option value="2017">2017</option>
-                                            <option value="2016">2016</option>
-                                            <option value="2015">2015</option>
-                                            <option value="2014">2014</option>
-                                            <option value="2013">2013</option>
-                                            <option value="2012">2012</option>
-                                            <option value="2011">2011</option>
-                                            <option value="2010">2010</option>
-                                            <option value="2009">2009</option>
-                                            <option value="2008">2008</option>
-                                            <option value="2007">2007</option>
-                                            <option value="2006">2006</option>
-                                            <option value="2005">2005</option>
-                                            <option value="2004">2004</option>
-                                            <option value="2003">2003</option>
-                                            <option value="2002">2002</option>
-                                            <option value="2001">2001</option>
-                                            <option value="2000">2000</option>
-                                            <option value="1999">1999</option>
-                                            <option value="1998">1998</option>
-                                            <option value="1997">1997</option>
-                                            <option value="1996">1996</option>
-                                            <option value="1995">1995</option>
-                                            <option value="1994">1994</option>
-                                            <option value="1993">1993</option>
-                                            <option value="1992">1992</option>
-                                            <option value="1991">1991</option>
-                                            <option value="1990">1990</option>
-                                        </select>
+                        @if (_auth.User.HasResume == true)
+                        {
+                            @foreach (Education item in _auth.User.Resumes.educations)
+                            {
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label class="form-label text-dark">School Name</label>
+                                        <input value="@item.SchoolName" name="resume-edu-school" type="text" class="form-control" placeholder="School Name" required>
                                         <span class="text-danger"></span>
                                     </div>
-                                    <div class="col-6">
-                                        <select name="resume-edu-till" class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
-                                            <option value="0">Untill</option>
-                                            <option value="2019">2019</option>
-                                            <option value="2018">2018</option>
-                                            <option value="2017">2017</option>
-                                            <option value="2016">2016</option>
-                                            <option value="2015">2015</option>
-                                            <option value="2014">2014</option>
-                                            <option value="2013">2013</option>
-                                            <option value="2012">2012</option>
-                                            <option value="2011">2011</option>
-                                            <option value="2010">2010</option>
-                                            <option value="2009">2009</option>
-                                            <option value="2008">2008</option>
-                                            <option value="2007">2007</option>
-                                            <option value="2006">2006</option>
-                                            <option value="2005">2005</option>
-                                            <option value="2004">2004</option>
-                                            <option value="2003">2003</option>
-                                            <option value="2002">2002</option>
-                                            <option value="2001">2001</option>
-                                            <option value="2000">2000</option>
-                                            <option value="1999">1999</option>
-                                            <option value="1998">1998</option>
-                                            <option value="1997">1997</option>
-                                            <option value="1996">1996</option>
-                                            <option value="1995">1995</option>
-                                            <option value="1994">1994</option>
-                                            <option value="1993">1993</option>
-                                            <option value="1992">1992</option>
-                                            <option value="1991">1991</option>
-                                            <option value="1990">1990</option>
-                                        </select>
+                                    <div class="form-group">
+                                        <label class="form-label text-dark">Qualification</label>
+                                        <input value="@item.Qualification" name="resume-edu-quality" type="text" class="form-control" placeholder="Qualification" required>
                                         <span class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label text-dark">Period</label>
+                                        <div class="row gutters-xs">
+                                            <div class="col-6">
+                                                <select name="resume-edu-since" class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
+                                                    <option value="@item.StartEducationYear" selected>@item.StartEducationYear</option>
+                                                    <option value="0">Since</option>
+                                                    <option value="2019">2019</option>
+                                                    <option value="2018">2018</option>
+                                                    <option value="2017">2017</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2015">2015</option>
+                                                    <option value="2014">2014</option>
+                                                    <option value="2013">2013</option>
+                                                    <option value="2012">2012</option>
+                                                    <option value="2011">2011</option>
+                                                    <option value="2010">2010</option>
+                                                    <option value="2009">2009</option>
+                                                    <option value="2008">2008</option>
+                                                    <option value="2007">2007</option>
+                                                    <option value="2006">2006</option>
+                                                    <option value="2005">2005</option>
+                                                    <option value="2004">2004</option>
+                                                    <option value="2003">2003</option>
+                                                    <option value="2002">2002</option>
+                                                    <option value="2001">2001</option>
+                                                    <option value="2000">2000</option>
+                                                    <option value="1999">1999</option>
+                                                    <option value="1998">1998</option>
+                                                    <option value="1997">1997</option>
+                                                    <option value="1996">1996</option>
+                                                    <option value="1995">1995</option>
+                                                    <option value="1994">1994</option>
+                                                    <option value="1993">1993</option>
+                                                    <option value="1992">1992</option>
+                                                    <option value="1991">1991</option>
+                                                    <option value="1990">1990</option>
+                                                </select>
+                                                <span class="text-danger"></span>
+                                            </div>
+                                            <div class="col-6">
+                                                <select name="resume-edu-till" class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
+                                                    <option value="@item.EndEducationYear" selected>@item.EndEducationYear</option>
+                                                    <option value="0">Untill</option>
+                                                    <option value="2019">2019</option>
+                                                    <option value="2018">2018</option>
+                                                    <option value="2017">2017</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2015">2015</option>
+                                                    <option value="2014">2014</option>
+                                                    <option value="2013">2013</option>
+                                                    <option value="2012">2012</option>
+                                                    <option value="2011">2011</option>
+                                                    <option value="2010">2010</option>
+                                                    <option value="2009">2009</option>
+                                                    <option value="2008">2008</option>
+                                                    <option value="2007">2007</option>
+                                                    <option value="2006">2006</option>
+                                                    <option value="2005">2005</option>
+                                                    <option value="2004">2004</option>
+                                                    <option value="2003">2003</option>
+                                                    <option value="2002">2002</option>
+                                                    <option value="2001">2001</option>
+                                                    <option value="2000">2000</option>
+                                                    <option value="1999">1999</option>
+                                                    <option value="1998">1998</option>
+                                                    <option value="1997">1997</option>
+                                                    <option value="1996">1996</option>
+                                                    <option value="1995">1995</option>
+                                                    <option value="1994">1994</option>
+                                                    <option value="1993">1993</option>
+                                                    <option value="1992">1992</option>
+                                                    <option value="1991">1991</option>
+                                                    <option value="1990">1990</option>
+                                                </select>
+                                                <span class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-options mr-0 d-flex justify-content-end">
+                                        <a class="btn btn-danger btn-sm btn-education-delete text-white"><i class="fa fa-trash"></i> Delete</a>
                                     </div>
                                 </div>
+                            }
+                        }
+                        else
+                        {
+
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="form-label text-dark">School Name</label>
+                                    <input name="resume-edu-school" type="text" class="form-control" placeholder="School Name" required>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label text-dark">Qualification</label>
+                                    <input name="resume-edu-quality" type="text" class="form-control" placeholder="Qualification" required>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label text-dark">Period</label>
+                                    <div class="row gutters-xs">
+                                        <div class="col-6">
+                                            <select name="resume-edu-since" class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
+
+                                                <option value="0">Since</option>
+                                                <option value="2019">2019</option>
+                                                <option value="2018">2018</option>
+                                                <option value="2017">2017</option>
+                                                <option value="2016">2016</option>
+                                                <option value="2015">2015</option>
+                                                <option value="2014">2014</option>
+                                                <option value="2013">2013</option>
+                                                <option value="2012">2012</option>
+                                                <option value="2011">2011</option>
+                                                <option value="2010">2010</option>
+                                                <option value="2009">2009</option>
+                                                <option value="2008">2008</option>
+                                                <option value="2007">2007</option>
+                                                <option value="2006">2006</option>
+                                                <option value="2005">2005</option>
+                                                <option value="2004">2004</option>
+                                                <option value="2003">2003</option>
+                                                <option value="2002">2002</option>
+                                                <option value="2001">2001</option>
+                                                <option value="2000">2000</option>
+                                                <option value="1999">1999</option>
+                                                <option value="1998">1998</option>
+                                                <option value="1997">1997</option>
+                                                <option value="1996">1996</option>
+                                                <option value="1995">1995</option>
+                                                <option value="1994">1994</option>
+                                                <option value="1993">1993</option>
+                                                <option value="1992">1992</option>
+                                                <option value="1991">1991</option>
+                                                <option value="1990">1990</option>
+                                            </select>
+                                            <span class="text-danger"></span>
+                                        </div>
+                                        <div class="col-6">
+                                            <select name="resume-edu-till" class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
+
+                                                <option value="0">Untill</option>
+                                                <option value="2019">2019</option>
+                                                <option value="2018">2018</option>
+                                                <option value="2017">2017</option>
+                                                <option value="2016">2016</option>
+                                                <option value="2015">2015</option>
+                                                <option value="2014">2014</option>
+                                                <option value="2013">2013</option>
+                                                <option value="2012">2012</option>
+                                                <option value="2011">2011</option>
+                                                <option value="2010">2010</option>
+                                                <option value="2009">2009</option>
+                                                <option value="2008">2008</option>
+                                                <option value="2007">2007</option>
+                                                <option value="2006">2006</option>
+                                                <option value="2005">2005</option>
+                                                <option value="2004">2004</option>
+                                                <option value="2003">2003</option>
+                                                <option value="2002">2002</option>
+                                                <option value="2001">2001</option>
+                                                <option value="2000">2000</option>
+                                                <option value="1999">1999</option>
+                                                <option value="1998">1998</option>
+                                                <option value="1997">1997</option>
+                                                <option value="1996">1996</option>
+                                                <option value="1995">1995</option>
+                                                <option value="1994">1994</option>
+                                                <option value="1993">1993</option>
+                                                <option value="1992">1992</option>
+                                                <option value="1991">1991</option>
+                                                <option value="1990">1990</option>
+                                            </select>
+                                            <span class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="card-options mr-0 d-flex justify-content-end">
+                                        <a class="btn btn-danger btn-sm btn-education-delete text-white"><i class="fa fa-trash"></i> Delete</a>
+                                    </div>*@
                             </div>
-                        </div>
+
+                        }
                     </div>
                     <div class="card work-card">
                         <div class="card-header ">
@@ -197,95 +319,204 @@
                                 <a class="btn btn-light btn-sm btn-work"><i class="fa fa-plus"></i> Add Another</a>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label class="form-label text-dark">Company Name</label>
-                                <input name="resume-exp-company" type="text" class="form-control" placeholder="Company Name" required>
-                                <span class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label text-dark">Position</label>
-                                <input name="resume-exp-position" type="text" class="form-control" placeholder="Position" required>
-                                <span class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label text-dark">Period</label>
-                                <div class="row gutters-xs">
-                                    <div class="col-6">
-                                        <select name="resume-exp-since" class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
-                                            <option value="0">Since</option>
-                                            <option value="2019">2019</option>
-                                            <option value="2018">2018</option>
-                                            <option value="2017">2017</option>
-                                            <option value="2016">2016</option>
-                                            <option value="2015">2015</option>
-                                            <option value="2014">2014</option>
-                                            <option value="2013">2013</option>
-                                            <option value="2012">2012</option>
-                                            <option value="2011">2011</option>
-                                            <option value="2010">2010</option>
-                                            <option value="2009">2009</option>
-                                            <option value="2008">2008</option>
-                                            <option value="2007">2007</option>
-                                            <option value="2006">2006</option>
-                                            <option value="2005">2005</option>
-                                            <option value="2004">2004</option>
-                                            <option value="2003">2003</option>
-                                            <option value="2002">2002</option>
-                                            <option value="2001">2001</option>
-                                            <option value="2000">2000</option>
-                                            <option value="1999">1999</option>
-                                            <option value="1998">1998</option>
-                                            <option value="1997">1997</option>
-                                            <option value="1996">1996</option>
-                                            <option value="1995">1995</option>
-                                            <option value="1994">1994</option>
-                                            <option value="1993">1993</option>
-                                            <option value="1992">1992</option>
-                                            <option value="1991">1991</option>
-                                            <option value="1990">1990</option>
-                                        </select>
+                        @if (_auth.User.HasResume == true)
+                        {
+                            @foreach (Work item in _auth.User.Resumes.works)
+                            {
+
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label class="form-label text-dark">Company Name</label>
+                                        <input value="@item.CompanyName" name="resume-exp-company" type="text" class="form-control" placeholder="Company Name" required>
                                         <span class="text-danger"></span>
                                     </div>
-                                    <div class="col-6">
-                                        <select name="resume-exp-till" class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
-                                            <option value="0">Untill</option>
-                                            <option value="2019">2019</option>
-                                            <option value="2018">2018</option>
-                                            <option value="2017">2017</option>
-                                            <option value="2016">2016</option>
-                                            <option value="2015">2015</option>
-                                            <option value="2014">2014</option>
-                                            <option value="2013">2013</option>
-                                            <option value="2012">2012</option>
-                                            <option value="2011">2011</option>
-                                            <option value="2010">2010</option>
-                                            <option value="2009">2009</option>
-                                            <option value="2008">2008</option>
-                                            <option value="2007">2007</option>
-                                            <option value="2006">2006</option>
-                                            <option value="2005">2005</option>
-                                            <option value="2004">2004</option>
-                                            <option value="2003">2003</option>
-                                            <option value="2002">2002</option>
-                                            <option value="2001">2001</option>
-                                            <option value="2000">2000</option>
-                                            <option value="1999">1999</option>
-                                            <option value="1998">1998</option>
-                                            <option value="1997">1997</option>
-                                            <option value="1996">1996</option>
-                                            <option value="1995">1995</option>
-                                            <option value="1994">1994</option>
-                                            <option value="1993">1993</option>
-                                            <option value="1992">1992</option>
-                                            <option value="1991">1991</option>
-                                            <option value="1990">1990</option>
-                                        </select>
+                                    <div class="form-group">
+                                        <label class="form-label text-dark">Position</label>
+                                        <input value="@item.Position" name="resume-exp-position" type="text" class="form-control" placeholder="Position" required>
                                         <span class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label text-dark">Period</label>
+                                        <div class="row gutters-xs">
+                                            <div class="col-6">
+                                                <select name="resume-exp-since" class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
+                                                    <option value="@item.StartWorkYear" selected>@item.StartWorkYear</option>
+                                                    <option value="0">Since</option>
+                                                    <option value="2019">2019</option>
+                                                    <option value="2018">2018</option>
+                                                    <option value="2017">2017</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2015">2015</option>
+                                                    <option value="2014">2014</option>
+                                                    <option value="2013">2013</option>
+                                                    <option value="2012">2012</option>
+                                                    <option value="2011">2011</option>
+                                                    <option value="2010">2010</option>
+                                                    <option value="2009">2009</option>
+                                                    <option value="2008">2008</option>
+                                                    <option value="2007">2007</option>
+                                                    <option value="2006">2006</option>
+                                                    <option value="2005">2005</option>
+                                                    <option value="2004">2004</option>
+                                                    <option value="2003">2003</option>
+                                                    <option value="2002">2002</option>
+                                                    <option value="2001">2001</option>
+                                                    <option value="2000">2000</option>
+                                                    <option value="1999">1999</option>
+                                                    <option value="1998">1998</option>
+                                                    <option value="1997">1997</option>
+                                                    <option value="1996">1996</option>
+                                                    <option value="1995">1995</option>
+                                                    <option value="1994">1994</option>
+                                                    <option value="1993">1993</option>
+                                                    <option value="1992">1992</option>
+                                                    <option value="1991">1991</option>
+                                                    <option value="1990">1990</option>
+                                                </select>
+                                                <span class="text-danger"></span>
+                                            </div>
+                                            <div class="col-6">
+                                                <select name="resume-exp-till" class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
+                                                    <option value="@item.EndWorkYear" selected>@item.EndWorkYear</option>
+                                                    <option value="0">Untill</option>
+                                                    <option value="2019">2019</option>
+                                                    <option value="2018">2018</option>
+                                                    <option value="2017">2017</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2015">2015</option>
+                                                    <option value="2014">2014</option>
+                                                    <option value="2013">2013</option>
+                                                    <option value="2012">2012</option>
+                                                    <option value="2011">2011</option>
+                                                    <option value="2010">2010</option>
+                                                    <option value="2009">2009</option>
+                                                    <option value="2008">2008</option>
+                                                    <option value="2007">2007</option>
+                                                    <option value="2006">2006</option>
+                                                    <option value="2005">2005</option>
+                                                    <option value="2004">2004</option>
+                                                    <option value="2003">2003</option>
+                                                    <option value="2002">2002</option>
+                                                    <option value="2001">2001</option>
+                                                    <option value="2000">2000</option>
+                                                    <option value="1999">1999</option>
+                                                    <option value="1998">1998</option>
+                                                    <option value="1997">1997</option>
+                                                    <option value="1996">1996</option>
+                                                    <option value="1995">1995</option>
+                                                    <option value="1994">1994</option>
+                                                    <option value="1993">1993</option>
+                                                    <option value="1992">1992</option>
+                                                    <option value="1991">1991</option>
+                                                    <option value="1990">1990</option>
+                                                </select>
+                                                <span class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-options mr-0 d-flex justify-content-end">
+                                        <a class="btn btn-danger btn-sm btn-work-delete text-white"><i class="fa fa-trash"></i> Delete</a>
                                     </div>
                                 </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="form-label text-dark">Company Name</label>
+                                    <input name="resume-exp-company" type="text" class="form-control" placeholder="Company Name" required>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label text-dark">Position</label>
+                                    <input name="resume-exp-position" type="text" class="form-control" placeholder="Position" required>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label text-dark">Period</label>
+                                    <div class="row gutters-xs">
+                                        <div class="col-6">
+                                            <select name="resume-exp-since" class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
+
+                                                <option value="0">Since</option>
+                                                <option value="2019">2019</option>
+                                                <option value="2018">2018</option>
+                                                <option value="2017">2017</option>
+                                                <option value="2016">2016</option>
+                                                <option value="2015">2015</option>
+                                                <option value="2014">2014</option>
+                                                <option value="2013">2013</option>
+                                                <option value="2012">2012</option>
+                                                <option value="2011">2011</option>
+                                                <option value="2010">2010</option>
+                                                <option value="2009">2009</option>
+                                                <option value="2008">2008</option>
+                                                <option value="2007">2007</option>
+                                                <option value="2006">2006</option>
+                                                <option value="2005">2005</option>
+                                                <option value="2004">2004</option>
+                                                <option value="2003">2003</option>
+                                                <option value="2002">2002</option>
+                                                <option value="2001">2001</option>
+                                                <option value="2000">2000</option>
+                                                <option value="1999">1999</option>
+                                                <option value="1998">1998</option>
+                                                <option value="1997">1997</option>
+                                                <option value="1996">1996</option>
+                                                <option value="1995">1995</option>
+                                                <option value="1994">1994</option>
+                                                <option value="1993">1993</option>
+                                                <option value="1992">1992</option>
+                                                <option value="1991">1991</option>
+                                                <option value="1990">1990</option>
+                                            </select>
+                                            <span class="text-danger"></span>
+                                        </div>
+                                        <div class="col-6">
+                                            <select name="resume-exp-till" class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
+
+                                                <option value="0">Untill</option>
+                                                <option value="2019">2019</option>
+                                                <option value="2018">2018</option>
+                                                <option value="2017">2017</option>
+                                                <option value="2016">2016</option>
+                                                <option value="2015">2015</option>
+                                                <option value="2014">2014</option>
+                                                <option value="2013">2013</option>
+                                                <option value="2012">2012</option>
+                                                <option value="2011">2011</option>
+                                                <option value="2010">2010</option>
+                                                <option value="2009">2009</option>
+                                                <option value="2008">2008</option>
+                                                <option value="2007">2007</option>
+                                                <option value="2006">2006</option>
+                                                <option value="2005">2005</option>
+                                                <option value="2004">2004</option>
+                                                <option value="2003">2003</option>
+                                                <option value="2002">2002</option>
+                                                <option value="2001">2001</option>
+                                                <option value="2000">2000</option>
+                                                <option value="1999">1999</option>
+                                                <option value="1998">1998</option>
+                                                <option value="1997">1997</option>
+                                                <option value="1996">1996</option>
+                                                <option value="1995">1995</option>
+                                                <option value="1994">1994</option>
+                                                <option value="1993">1993</option>
+                                                <option value="1992">1992</option>
+                                                <option value="1991">1991</option>
+                                                <option value="1990">1990</option>
+                                            </select>
+                                            <span class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="card-options mr-0 d-flex justify-content-end">
+                                        <a class="btn btn-danger btn-sm btn-work-delete text-white"><i class="fa fa-trash"></i> Delete</a>
+                                    </div>*@
                             </div>
-                        </div>
+                        }
                     </div>
 
                     <div class="card">
@@ -295,8 +526,15 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label class="form-label">Write Personal Skills <span class="form-label-small">56/100</span></label>
-                                <input  class="form-control" name="resume-input-personal" rows="6" placeholder="text here.."></input>
-                                <span  class="text-danger"></span>
+                                @if (_auth.User.HasResume == true)
+                                {
+                                    <input value="@_auth.User.Resumes.PersonalSkill" class="form-control" name="resume-input-personal" rows="6" placeholder="text here.."></input>
+                                }
+                                else
+                                {
+                                    <input class="form-control" name="resume-input-personal" rows="6" placeholder="text here.."></input>
+                                }
+                                <span class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -304,15 +542,15 @@
 
                     <div class="float-right mb-4 mb-lg-0">
 
-                        @if (ViewBag.HasResume == true)
+                        @if (_auth.User.HasResume == true)
                         {
-                            <a class="btn btn-success w-150 edit-resume text-white">Finish</a>
+                            <button type="submit" class="btn btn-success w-150 edit-resume text-white">Save Changes</button>
                         }
                         else
                         {
-                            <a class="btn btn-success w-150 finish-resume text-white">Finish</a>
+                            <button type="submit" class="btn btn-success w-150 finish-resume text-white">Finish</button>
                         }
-                        
+
                     </div>
 
                 </form>
@@ -424,199 +662,204 @@
     <script>
         $(document).ready(function () {
 
+            //add new education
             $('.btn-education').on("click", function () {
 
-                $('.edu-card').after(`<div class="card edu-card">
-                                                                            <div class="card-header ">
-                                                                                <h3 class="card-title">Education</h3 >
-                                                                                <div class="card-options">
-                                                                                    <a class="btn btn-light btn-sm btn-education"><i class="fa fa-plus"></i> Add Another</a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                <div class="form-group">
-                                                                                    <label class="form-label text-dark">School Name</label>
-                                                                                    <input name = "resume-edu-school" type="text" class="form-control" placeholder="School Name" required>
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label class="form-label text-dark">Qualification</label>
-                                                                                    <input name = "resume-edu-quality" type="text" class="form-control" placeholder="Qualification" required>
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label class="form-label text-dark">Period</label>
-                                                                                    <div class="row gutters-xs">
-                                                                                        <div class="col-6">
-                                                                                            <select name = "resume-edu-since" class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
-                                                                                                <option value="0">Since</option>
-                                                                                                <option value="2019">2019</option>
-                                                                                                <option value="2018">2018</option>
-                                                                                                <option value="2017">2017</option>
-                                                                                                <option value="2016">2016</option>
-                                                                                                <option value="2015">2015</option>
-                                                                                                <option value="2014">2014</option>
-                                                                                                <option value="2013">2013</option>
-                                                                                                <option value="2012">2012</option>
-                                                                                                <option value="2011">2011</option>
-                                                                                                <option value="2010">2010</option>
-                                                                                                <option value="2009">2009</option>
-                                                                                                <option value="2008">2008</option>
-                                                                                                <option value="2007">2007</option>
-                                                                                                <option value="2006">2006</option>
-                                                                                                <option value="2005">2005</option>
-                                                                                                <option value="2004">2004</option>
-                                                                                                <option value="2003">2003</option>
-                                                                                                <option value="2002">2002</option>
-                                                                                                <option value="2001">2001</option>
-                                                                                                <option value="2000">2000</option>
-                                                                                                <option value="1999">1999</option>
-                                                                                                <option value="1998">1998</option>
-                                                                                                <option value="1997">1997</option>
-                                                                                                <option value="1996">1996</option>
-                                                                                                <option value="1995">1995</option>
-                                                                                                <option value="1994">1994</option>
-                                                                                                <option value="1993">1993</option>
-                                                                                                <option value="1992">1992</option>
-                                                                                                <option value="1991">1991</option>
-                                                                                                <option value="1990">1990</option>
-                                                                                            </select>
-                                                                                        </div>
-                                                                                        <div class="col-6">
-                                                                                            <select name = "resume-edu-till" class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
-                                                                                                <option value="0">Untill</option>
-                                                                                                <option value="2019">2019</option>
-                                                                                                <option value="2018">2018</option>
-                                                                                                <option value="2017">2017</option>
-                                                                                                <option value="2016">2016</option>
-                                                                                                <option value="2015">2015</option>
-                                                                                                <option value="2014">2014</option>
-                                                                                                <option value="2013">2013</option>
-                                                                                                <option value="2012">2012</option>
-                                                                                                <option value="2011">2011</option>
-                                                                                                <option value="2010">2010</option>
-                                                                                                <option value="2009">2009</option>
-                                                                                                <option value="2008">2008</option>
-                                                                                                <option value="2007">2007</option>
-                                                                                                <option value="2006">2006</option>
-                                                                                                <option value="2005">2005</option>
-                                                                                                <option value="2004">2004</option>
-                                                                                                <option value="2003">2003</option>
-                                                                                                <option value="2002">2002</option>
-                                                                                                <option value="2001">2001</option>
-                                                                                                <option value="2000">2000</option>
-                                                                                                <option value="1999">1999</option>
-                                                                                                <option value="1998">1998</option>
-                                                                                                <option value="1997">1997</option>
-                                                                                                <option value="1996">1996</option>
-                                                                                                <option value="1995">1995</option>
-                                                                                                <option value="1994">1994</option>
-                                                                                                <option value="1993">1993</option>
-                                                                                                <option value="1992">1992</option>
-                                                                                                <option value="1991">1991</option>
-                                                                                                <option value="1990">1990</option>
-                                                                                            </select>
-                                                                                        </div>
+                $(this).closest('.card-header').after(`<div class="card-body">
+                    <div class="form-group">
+                        <label class="form-label text-dark">School Name</label>
+                        <input name="resume-edu-school" type="text" class="form-control" placeholder="School Name" required>
                                                                                     </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>`);
-            })
+                        <div class="form-group">
+                            <label class="form-label text-dark">Qualification</label>
+                            <input name="resume-edu-quality" type="text" class="form-control" placeholder="Qualification" required>
+                                                                                    </div>
+                            <div class="form-group">
+                                <label class="form-label text-dark">Period</label>
+                                <div class="row gutters-xs">
+                                    <div class="col-6">
+                                        <select name="resume-edu-since" class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
+                                            <option value="0">Since</option>
+                                            <option value="2019">2019</option>
+                                            <option value="2018">2018</option>
+                                            <option value="2017">2017</option>
+                                            <option value="2016">2016</option>
+                                            <option value="2015">2015</option>
+                                            <option value="2014">2014</option>
+                                            <option value="2013">2013</option>
+                                            <option value="2012">2012</option>
+                                            <option value="2011">2011</option>
+                                            <option value="2010">2010</option>
+                                            <option value="2009">2009</option>
+                                            <option value="2008">2008</option>
+                                            <option value="2007">2007</option>
+                                            <option value="2006">2006</option>
+                                            <option value="2005">2005</option>
+                                            <option value="2004">2004</option>
+                                            <option value="2003">2003</option>
+                                            <option value="2002">2002</option>
+                                            <option value="2001">2001</option>
+                                            <option value="2000">2000</option>
+                                            <option value="1999">1999</option>
+                                            <option value="1998">1998</option>
+                                            <option value="1997">1997</option>
+                                            <option value="1996">1996</option>
+                                            <option value="1995">1995</option>
+                                            <option value="1994">1994</option>
+                                            <option value="1993">1993</option>
+                                            <option value="1992">1992</option>
+                                            <option value="1991">1991</option>
+                                            <option value="1990">1990</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <select name="resume-edu-till" class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
+                                            <option value="0">Untill</option>
+                                            <option value="2019">2019</option>
+                                            <option value="2018">2018</option>
+                                            <option value="2017">2017</option>
+                                            <option value="2016">2016</option>
+                                            <option value="2015">2015</option>
+                                            <option value="2014">2014</option>
+                                            <option value="2013">2013</option>
+                                            <option value="2012">2012</option>
+                                            <option value="2011">2011</option>
+                                            <option value="2010">2010</option>
+                                            <option value="2009">2009</option>
+                                            <option value="2008">2008</option>
+                                            <option value="2007">2007</option>
+                                            <option value="2006">2006</option>
+                                            <option value="2005">2005</option>
+                                            <option value="2004">2004</option>
+                                            <option value="2003">2003</option>
+                                            <option value="2002">2002</option>
+                                            <option value="2001">2001</option>
+                                            <option value="2000">2000</option>
+                                            <option value="1999">1999</option>
+                                            <option value="1998">1998</option>
+                                            <option value="1997">1997</option>
+                                            <option value="1996">1996</option>
+                                            <option value="1995">1995</option>
+                                            <option value="1994">1994</option>
+                                            <option value="1993">1993</option>
+                                            <option value="1992">1992</option>
+                                            <option value="1991">1991</option>
+                                            <option value="1990">1990</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-options mr-0 d-flex justify-content-end">
+                                <a class="btn btn-danger btn-sm btn-education-delete text-white"><i class="fa fa-trash"></i> Delete</a>
+                            </div>
+                        </div>`
+                );
+            });
 
+            // Delete education
+            $(document).on("click", ".btn-education-delete", function () {
+                $(this).closest('.card-body').remove();
+            });
+
+            //Add new work experience
             $('.btn-work').on("click", function () {
-                $('.work-card').after(` <div class="card work-card">
-                                                                            <div class="card-header ">
-                                                                                <h3 class="card-title">Working Experience</h3>
-                                                                                <div class="card-options">
-
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                <div class="form-group">
-                                                                                    <label class="form-label text-dark">Company Name</label>
-                                                                                    <input name ="resume-exp-company" type="text" class="form-control" placeholder="Company Name" required>
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label class="form-label text-dark">Position</label>
-                                                                                    <input name ="resume-exp-position" type="text" class="form-control" placeholder="Position" required>
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label class="form-label text-dark">Period</label>
-                                                                                    <div class="row gutters-xs">
-                                                                                        <div class="col-6">
-                                                                                            <select name ="resume-exp-since" class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
-                                                                                                <option value="0">Since</option>
-                                                                                                <option value="2019">2019</option>
-                                                                                                <option value="2018">2018</option>
-                                                                                                <option value="2017">2017</option>
-                                                                                                <option value="2016">2016</option>
-                                                                                                <option value="2015">2015</option>
-                                                                                                <option value="2014">2014</option>
-                                                                                                <option value="2013">2013</option>
-                                                                                                <option value="2012">2012</option>
-                                                                                                <option value="2011">2011</option>
-                                                                                                <option value="2010">2010</option>
-                                                                                                <option value="2009">2009</option>
-                                                                                                <option value="2008">2008</option>
-                                                                                                <option value="2007">2007</option>
-                                                                                                <option value="2006">2006</option>
-                                                                                                <option value="2005">2005</option>
-                                                                                                <option value="2004">2004</option>
-                                                                                                <option value="2003">2003</option>
-                                                                                                <option value="2002">2002</option>
-                                                                                                <option value="2001">2001</option>
-                                                                                                <option value="2000">2000</option>
-                                                                                                <option value="1999">1999</option>
-                                                                                                <option value="1998">1998</option>
-                                                                                                <option value="1997">1997</option>
-                                                                                                <option value="1996">1996</option>
-                                                                                                <option value="1995">1995</option>
-                                                                                                <option value="1994">1994</option>
-                                                                                                <option value="1993">1993</option>
-                                                                                                <option value="1992">1992</option>
-                                                                                                <option value="1991">1991</option>
-                                                                                                <option value="1990">1990</option>
-                                                                                            </select>
-                                                                                        </div>
-                                                                                        <div class="col-6">
-                                                                                            <select name ="resume-exp-till" class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
-                                                                                                <option value="0">Untill</option>
-                                                                                                <option value="2019">2019</option>
-                                                                                                <option value="2018">2018</option>
-                                                                                                <option value="2017">2017</option>
-                                                                                                <option value="2016">2016</option>
-                                                                                                <option value="2015">2015</option>
-                                                                                                <option value="2014">2014</option>
-                                                                                                <option value="2013">2013</option>
-                                                                                                <option value="2012">2012</option>
-                                                                                                <option value="2011">2011</option>
-                                                                                                <option value="2010">2010</option>
-                                                                                                <option value="2009">2009</option>
-                                                                                                <option value="2008">2008</option>
-                                                                                                <option value="2007">2007</option>
-                                                                                                <option value="2006">2006</option>
-                                                                                                <option value="2005">2005</option>
-                                                                                                <option value="2004">2004</option>
-                                                                                                <option value="2003">2003</option>
-                                                                                                <option value="2002">2002</option>
-                                                                                                <option value="2001">2001</option>
-                                                                                                <option value="2000">2000</option>
-                                                                                                <option value="1999">1999</option>
-                                                                                                <option value="1998">1998</option>
-                                                                                                <option value="1997">1997</option>
-                                                                                                <option value="1996">1996</option>
-                                                                                                <option value="1995">1995</option>
-                                                                                                <option value="1994">1994</option>
-                                                                                                <option value="1993">1993</option>
-                                                                                                <option value="1992">1992</option>
-                                                                                                <option value="1991">1991</option>
-                                                                                                <option value="1990">1990</option>
-                                                                                            </select>
-                                                                                        </div>
+                $(this).closest('.card-header').after(`<div class="card-body">
+                    <div class="form-group">
+                        <label class="form-label text-dark">Company Name</label>
+                        <input name="resume-exp-company" type="text" class="form-control" placeholder="Company Name" required>
                                                                                     </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>`)
-            })
+                        <div class="form-group">
+                            <label class="form-label text-dark">Position</label>
+                            <input name="resume-exp-position" type="text" class="form-control" placeholder="Position" required>
+                                                                                    </div>
+                            <div class="form-group">
+                                <label class="form-label text-dark">Period</label>
+                                <div class="row gutters-xs">
+                                    <div class="col-6">
+                                        <select name="resume-exp-since" class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
+                                            <option value="0">Since</option>
+                                            <option value="2019">2019</option>
+                                            <option value="2018">2018</option>
+                                            <option value="2017">2017</option>
+                                            <option value="2016">2016</option>
+                                            <option value="2015">2015</option>
+                                            <option value="2014">2014</option>
+                                            <option value="2013">2013</option>
+                                            <option value="2012">2012</option>
+                                            <option value="2011">2011</option>
+                                            <option value="2010">2010</option>
+                                            <option value="2009">2009</option>
+                                            <option value="2008">2008</option>
+                                            <option value="2007">2007</option>
+                                            <option value="2006">2006</option>
+                                            <option value="2005">2005</option>
+                                            <option value="2004">2004</option>
+                                            <option value="2003">2003</option>
+                                            <option value="2002">2002</option>
+                                            <option value="2001">2001</option>
+                                            <option value="2000">2000</option>
+                                            <option value="1999">1999</option>
+                                            <option value="1998">1998</option>
+                                            <option value="1997">1997</option>
+                                            <option value="1996">1996</option>
+                                            <option value="1995">1995</option>
+                                            <option value="1994">1994</option>
+                                            <option value="1993">1993</option>
+                                            <option value="1992">1992</option>
+                                            <option value="1991">1991</option>
+                                            <option value="1990">1990</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <select name="resume-exp-till" class="form-control custom-select select2-show-search" data-placeholder="Choose one (with searchbox)">
+                                            <option value="0">Untill</option>
+                                            <option value="2019">2019</option>
+                                            <option value="2018">2018</option>
+                                            <option value="2017">2017</option>
+                                            <option value="2016">2016</option>
+                                            <option value="2015">2015</option>
+                                            <option value="2014">2014</option>
+                                            <option value="2013">2013</option>
+                                            <option value="2012">2012</option>
+                                            <option value="2011">2011</option>
+                                            <option value="2010">2010</option>
+                                            <option value="2009">2009</option>
+                                            <option value="2008">2008</option>
+                                            <option value="2007">2007</option>
+                                            <option value="2006">2006</option>
+                                            <option value="2005">2005</option>
+                                            <option value="2004">2004</option>
+                                            <option value="2003">2003</option>
+                                            <option value="2002">2002</option>
+                                            <option value="2001">2001</option>
+                                            <option value="2000">2000</option>
+                                            <option value="1999">1999</option>
+                                            <option value="1998">1998</option>
+                                            <option value="1997">1997</option>
+                                            <option value="1996">1996</option>
+                                            <option value="1995">1995</option>
+                                            <option value="1994">1994</option>
+                                            <option value="1993">1993</option>
+                                            <option value="1992">1992</option>
+                                            <option value="1991">1991</option>
+                                            <option value="1990">1990</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-options mr-0 d-flex justify-content-end">
+                                <a class="btn btn-danger btn-sm btn-work-delete text-white"><i class="fa fa-trash"></i> Delete</a>
+                            </div>
+                        </div>`)
+            });
 
+            //Delete work experience
+            $(document).on("click", ".btn-work-delete", function () {
+                 
+                 $(this).closest('.card-body').remove();
+            });
+
+            //Save created information
             $(document).on("click", ".finish-resume", function (e) {
 
                 e.preventDefault();
@@ -688,93 +931,77 @@
                 })
             })
 
-            //$(document).on("click", ".edit-resume", function (e) {
+            //Save edited information
+            $(document).on("click", ".edit-resume", function (e) {
 
-            //    e.preventDefault();
+                e.preventDefault();
 
-            //    var educations = new Array();
-            //    $(".card-edu").each((index, item) => {
-            //        educations.push({
-            //            SchoolName: $(item).find('input[name="resume-edu-school"]').val(),
-            //            Qualification: $(item).find('input[name="resume-edu-quality"]').val(),
-            //            StartedAt: $(item).find('select[name="resume-edu-since"]').val(),
-            //            FinishedAt: $(item).find('select[name="resume-edu-till"]').val(),
-            //            University: $(item).find('select[name="resume-edu-uni"]').val(),
-            //        })
-            //    })
-
-
-            //    var experiences = new Array();
-            //    $(".card-exp").each((index, item) => {
-            //        experiences.push({
-            //            CompanyName: $(item).find('input[name="resume-exp-company"]').val(),
-            //            Position: $(item).find('input[name="resume-exp-position"]').val(),
-            //            StartedAt: $(item).find('select[name="resume-exp-since"]').val(),
-            //            FinishedAt: $(item).find('select[name="resume-exp-till"]').val(),
-            //        })
-            //    })
+                var educations = new Array();
+                $(".edu-card").each((index, item) => {
+                    educations.push({
+                        SchoolName: $(item).find('input[name="resume-edu-school"]').val(),
+                        Qualification: $(item).find('input[name="resume-edu-quality"]').val(),
+                        StartSchool: $(item).find('select[name="resume-edu-since"]').val(),
+                        EndSchool: $(item).find('select[name="resume-edu-till"]').val(),
+                    })
+                })
 
 
-            //    var editphotos = $("input[name=resume-input-img]")[0].files;
-
-            //    var EditedResumedata = new FormData();
-            //    EditedResumedata.append("name", $("input[name=resume-input-name]").val());
-            //    EditedResumedata.append("profession", $("input[name=resume-input-profession]").val());
-            //    EditedResumedata.append("lastname", $("input[name=resume-input-lastname]").val());
-            //    EditedResumedata.append("email", $("input[name=resume-input-email]").val());
-            //    EditedResumedata.append("phone", $("input[name=resume-input-phone]").val());
-            //    EditedResumedata.append("personalSkill", $("input[name=resume-input-personal]").val());
-            //    EditedResumedata.append("experienceTime", $("select[name=resume-input-exp] option:selected").text());
-            //    if (editphotos.length > 0) {
-            //        EditedResumedata.append("Upload", editphotos[0], editphotos[0].name);
-            //    }
-
-            //    for (let i = 0; i < experiences.length; i++) {
-            //        EditedResumedata.append("experiences[" + i + "].CompanyName", experiences[i].CompanyName);
-            //        EditedResumedata.append("experiences[" + i + "].Position", experiences[i].Position);
-            //        EditedResumedata.append("experiences[" + i + "].StartedAt", experiences[i].StartedAt);
-            //        EditedResumedata.append("experiences[" + i + "].FinishedAt", experiences[i].FinishedAt);
-            //    }
+                var works = new Array();
+                $(".work-card").each((index, item) => {
+                    works.push({
+                        CompanyName: $(item).find('input[name="resume-exp-company"]').val(),
+                        Position: $(item).find('input[name="resume-exp-position"]').val(),
+                        StartWork: $(item).find('select[name="resume-exp-since"]').val(),
+                        EndWork: $(item).find('select[name="resume-exp-till"]').val(),
+                    })
+                })
 
 
-            //    for (let i = 0; i < educations.length; i++) {
-            //        EditedResumedata.append("educations[" + i + "].SchoolName", educations[i].SchoolName);
-            //        EditedResumedata.append("educations[" + i + "].Qualification", educations[i].Qualification);
-            //        EditedResumedata.append("educations[" + i + "].StartedAt", educations[i].StartedAt);
-            //        EditedResumedata.append("educations[" + i + "].FinishedAt", educations[i].FinishedAt);
-            //        EditedResumedata.append("educations[" + i + "].University", educations[i].University);
-            //    }
+                var resumedata = new FormData();
+                resumedata.append("jobProfession", $("input[name=resume-input-profession]").val());
+                resumedata.append("personalSkill", $("input[name=resume-input-personal]").val());
+                resumedata.append("ExperienceYear", $("select[name=resume-input-exp] option:selected").text());
 
-            //    $.ajax({
-            //        url: "/Resume/EditResume",
-            //        type: "post",
-            //        dataType: "json",
-            //        data: EditedResumedata,
-            //        processData: false,
-            //        contentType: false,
+                for (let i = 0; i < works.length; i++) {
+                    resumedata.append("works[" + i + "].CompanyName", works[i].CompanyName);
+                    resumedata.append("works[" + i + "].Position", works[i].Position);
+                    resumedata.append("works[" + i + "].StartWork", works[i].StartWork);
+                    resumedata.append("works[" + i + "].EndWork", works[i].EndWork);
+                }
 
-            //        beforeSend: function () {
-            //            $("#global-loader").show();
-            //        },
-            //        success: function (response) {
-            //            if (response.statusCode === 500) {
-            //                $.notify("Məlumatları düzgün daxil etdiyinizdən əmin olun", { timeOut: 1000 });
-            //            } else {
-            //                $.notify('CV niz redaktə olundu', "success", { timeOut: 1000 });
-            //                if (response.isRedirect) {
-            //                    window.location.href = response.redirectUrl;
-            //                }
-            //            }
 
-            //        },
-            //        error: function (error) {
-            //            $.notify("Məlumatları düzgün daxil etdiyinizdən əmin olun", { timeOut: 1000 });
-            //        },
-            //        complete: function () {
-            //            $("#global-loader").hide();
-            //        }
-            //    })
-            //})
+                for (let i = 0; i < educations.length; i++) {
+                    resumedata.append("educations[" + i + "].SchoolName", educations[i].SchoolName);
+                    resumedata.append("educations[" + i + "].Qualification", educations[i].Qualification);
+                    resumedata.append("educations[" + i + "].StartSchool", educations[i].StartSchool);
+                    resumedata.append("educations[" + i + "].EndSchool", educations[i].EndSchool);
+                }
+
+                $.ajax({
+                    url: "/Resume/Edit",
+                    type: "post",
+                    dataType: "json",
+                    data: resumedata,
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function () {
+                    },
+                    success: function (response) {
+                        if (response.statusCode === 500) {
+                        } else {
+                            if (response.isRedirect) {
+                                window.location.href = response.redirectUrl;
+                            }
+                        }
+
+                    },
+                    error: function (error) {
+                    },
+                    complete: function () {
+                    }
+                })
+            })
         })
 
     </script>
