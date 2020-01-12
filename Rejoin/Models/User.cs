@@ -79,5 +79,7 @@ namespace Rejoin.Models
         public UserResume Resumes { get; set; }
 
         public List<Job> Jobs { get; set; }
+
+        public List<Apply> AppliedJobs { get; set; }
     }
 }

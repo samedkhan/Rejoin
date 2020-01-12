@@ -19,6 +19,28 @@ namespace Rejoin.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Rejoin.Models.Apply", b =>
+                {
+                    b.Property<int>("ApplyId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("JobId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ApplyId");
+
+                    b.HasIndex("JobId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Appliers");
+                });
+
             modelBuilder.Entity("Rejoin.Models.Education", b =>
                 {
                     b.Property<int>("EducationId")
@@ -316,6 +338,21 @@ namespace Rejoin.Migrations
                     b.HasIndex("ResumeId");
 
                     b.ToTable("Works");
+                });
+
+            modelBuilder.Entity("Rejoin.Models.Apply", b =>
+                {
+                    b.HasOne("Rejoin.Models.Job", "Job")
+                        .WithMany("Appliers")
+                        .HasForeignKey("JobId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Rejoin.Models.User", "user")
+                        .WithMany("AppliedJobs")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Rejoin.Models.Education", b =>

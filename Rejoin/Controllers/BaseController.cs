@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.EntityFrameworkCore;
 using Rejoin.Data;
 using Rejoin.Models;
 
@@ -23,6 +24,7 @@ namespace Rejoin.Controllers
             if (token != null)
             {
                 User usr = _context.Users.FirstOrDefault(u => u.Token == token);
+                ViewBag.User = usr;
                 ViewBag.UserName = usr.FirstName + " " + usr.LastName;
                 ViewBag.IsCompany = usr.IsCompany;
                 ViewBag.FirstName = usr.FirstName;
@@ -42,7 +44,7 @@ namespace Rejoin.Controllers
                 ViewBag.UserId = usr.UserId;
                 ViewBag.HasResume = usr.HasResume;
             }
-
+            
             base.OnActionExecuting(context);
         }
     }

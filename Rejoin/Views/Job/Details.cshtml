@@ -117,7 +117,25 @@
                         <div class="card-footer bg-light-50">
                             <div class="icons">
 
-                                <a href="#" class="btn btn-success icons mt-1 mb-1" data-toggle="modal" data-target="#apply"><i class="fa fa-check mr-1"></i> Apply</a>
+                                @if (ViewBag.UserId != null)
+                                {
+                                    if (ViewBag.JobDetail.Appliers.Count != 0)
+                                    {
+                                        foreach (Apply item in ViewBag.JobDetail.Appliers)
+                                        {
+                                            if (item.UserId == ViewBag.UserId)
+                                            {
+                                                <a href="#" class="btn btn-success icons mt-1 mb-1" data-toggle="modal" data-target="#apply"><i class="fa fa-check mr-1"></i> YOU APPLIED IT</a>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a asp-controller="job" asp-action="apply" asp-route-JobId="@ViewBag.JobDetail.JobId" asp-route-UserId="@ViewBag.UserId" class="btn btn-primary icons mt-1 mb-1"><i class="fa fa-check mr-1"></i> Apply</a>
+                                    }
+                                }
+
+
                                 <a href="#" class="btn btn-primary icons" data-toggle="modal" data-target="#contact"><i class="si si-phone mr-1"></i> Contact Now</a>
                                 <a href="#" class="btn btn-danger icons mt-1 mb-1" data-toggle="modal" data-target="#report"><i class="icon icon-exclamation mr-1"></i> Report Abuse</a>
                             </div>

@@ -30,9 +30,33 @@
                                 <small class="d-block text-default">@item.CreatedAt.ToString("dd MMM yyyy / HH:MM")</small>
                             </div>
                         </div>
-                        <div class="ml-auto">
-                            <a href="jobs.html" class="btn btn-primary mt-3 mt-sm-0"> Apply Now</a>
-                        </div>
+                        @if (ViewBag.UserId != null)
+                        {
+                            @if (item.Appliers.Count != 0)
+                            {
+                                @foreach (Apply applier in item.Appliers)
+                                {
+
+                                    if (applier.JobId == item.JobId && applier.UserId == ViewBag.UserId)
+                                    {
+                                        <div class="ml-auto">
+                                            <a href="#" class="btn btn-success mt-3 mt-sm-0 text-white"> YOU APPLIED IT</a>
+                                        </div>
+                                    }
+
+                                }
+                            }
+                            else
+                            {
+                                <div class="ml-auto">
+                                    <a asp-controller="job" asp-action="apply" asp-route-JobId="@item.JobId" asp-route-UserId="@ViewBag.UserId" class="btn btn-primary mt-3 mt-sm-0"> Apply Now</a>
+                                </div>
+                            }
+                        }
+
+
+
+
                     </div>
                 </div>
             </div>

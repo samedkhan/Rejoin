@@ -30,6 +30,8 @@ namespace Rejoin.Data
 
         public DbSet<Language> Languages { get; set; }
 
+        public DbSet<Apply> Appliers { get; set; }
+
 
     }
 }

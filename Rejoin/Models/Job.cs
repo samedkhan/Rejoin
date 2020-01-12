@@ -63,5 +63,7 @@ namespace Rejoin.Models
         public int UserId { get; set; }
 
         public User user { get; set; }
+
+        public List<Apply> Appliers { get; set; }
     }
 }

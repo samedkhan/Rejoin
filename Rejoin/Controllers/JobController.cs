@@ -150,7 +150,7 @@ namespace Rejoin.Controllers
                     return View();
                 }
             }
-               
+
 
         }
 
@@ -184,7 +184,7 @@ namespace Rejoin.Controllers
                 {
                     JobCreate = job.JobCreate
                 };
-             
+
 
                 return View("~/Views/Job/Index.cshtml");
             }
@@ -213,7 +213,7 @@ namespace Rejoin.Controllers
                     return RedirectToAction("myjob", "job");
                 }
             }
-            
+
         }
 
         public IActionResult Activate(int Id)
@@ -238,12 +238,12 @@ namespace Rejoin.Controllers
                     return RedirectToAction("myjob", "job");
                 }
             }
-           
+
         }
-        
+
         public IActionResult Details(string Title, int id)
         {
-            Job JobDetail = _context.Jobs.Include(j => j.user).Where(j => j.JobId == id).FirstOrDefault();
+            Job JobDetail = _context.Jobs.Include(j => j.user).Include("Appliers").Where(j => j.JobId == id).FirstOrDefault();
 
             if (JobDetail == null)
             {
@@ -277,7 +277,7 @@ namespace Rejoin.Controllers
             ViewBag.Jobs = AllJobs;
             ViewBag.User = _context.Users.Find(id);
 
-            if(ViewBag.User == null)
+            if (ViewBag.User == null)
             {
                 return NotFound();
             }
@@ -300,7 +300,7 @@ namespace Rejoin.Controllers
         public IActionResult Alljobs()
         {
 
-            List<Job> Jobs = _context.Jobs.Include(j => j.user).Where(j=>j.IsActive==true).OrderByDescending(j => j.CreatedAt).ToList();
+            List<Job> Jobs = _context.Jobs.Include(j => j.user).Include("Appliers").Where(j => j.IsActive == true).OrderByDescending(j => j.CreatedAt).ToList();
             ViewBag.Jobs = Jobs;
             JobIndexViewModel data = new JobIndexViewModel();
             data.Breadcumb = new BreadcumbViewModel
@@ -315,13 +315,14 @@ namespace Rejoin.Controllers
             ViewBag.Partial = data.Breadcumb;
             return View();
         }
+
         public IActionResult Find(string? Category, string? Title)
         {
             List<Job> FindedJobs;
             if (Category == "All" && Title == "")
             {
                 FindedJobs = _context.Jobs.Include(j => j.user).Where(j => j.IsActive == true).OrderByDescending(j => j.CreatedAt).ToList();
-                
+
             }
             else
             {
@@ -341,6 +342,36 @@ namespace Rejoin.Controllers
 
             ViewBag.Partial = data.Breadcumb;
             return View();
+        }
+
+        public IActionResult Apply(int JobId, int? UserId)
+        {
+
+            if (_auth.User.UserId != UserId || UserId==null)
+            {
+                return RedirectToAction("login", "account");
+            }
+            else
+            {
+
+                Job FindedJob = _context.Jobs.Include("Appliers").Where(j => j.JobId == JobId).FirstOrDefault();
+                if (FindedJob == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    Apply NewApplier = new Apply
+                    {
+                        UserId = _auth.User.UserId,
+                        JobId = FindedJob.JobId,
+                    };
+                    _context.Appliers.Add(NewApplier);
+                    _context.SaveChanges();
+                    return RedirectToAction("Alljobs", "job");
+                }
+            }
+
         }
        
 
